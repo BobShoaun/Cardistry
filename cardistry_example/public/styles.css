@@ -1,14 +1,75 @@
 .container {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 5em auto 20em auto;
 }
+
+@keyframes spin {
+  from {
+    --rotate: 0deg;
+    transform: translateY(var(--translateY)) scale(var(--scale));
+  }
+  to {
+    --rotate: 180deg;
+    transform: translateY(var(--translateY)) scale(var(--scale));
+  }
+}
+/* 
+.hand {
+  display: flex;
+  gap: 1em;
+} */
 
 .card {
-  border: solid 1px gray;
-  padding: 1em;
-  max-width: 20em;
+  cursor: pointer;
+
+  transition-property: all;
+  transition-timing-function: linear;
+
+  position: absolute;
 }
 
-.card > h2 {
-  margin-bottom: 0.2em;
+.card .content {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition-property: all;
+  transition-timing-function: linear;
+  border-radius: 5px;
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.card .front,
+.card .back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 5px;
+}
+
+.card .front {
+  background: lightblue;
+}
+
+.card .back {
+  background: lightcoral;
+  transform: rotateY(180deg);
+}
+
+.hand {
+  position: relative;
+  margin-block: 3em;
+  max-width: 5em;
+  min-height: 10em;
+  display: flex;
+  align-items: center;
+}
+
+.hand.center {
+  margin: auto;
+}
+
+.hand.large {
+  min-height: 20em;
 }
