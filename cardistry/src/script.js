@@ -1,49 +1,25 @@
-export const cardistry = ({ target, states, loop }) => {
+export const play = ({ target, states, loop }) => {
   const hand = document.querySelector(target);
 
   if (!hand) return;
 
-  const numCards = 15;
-  const cardHeight = 120;
-  const cardWidth = 75;
-
-  for (let i = 0; i < numCards; i++) {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    card.style.width = `${cardWidth}px`;
-    card.style.height = `${cardHeight}px`;
-    const content = document.createElement("div");
-    content.classList.add("content");
-    const front = document.createElement("div");
-    front.classList.add("front");
-    const back = document.createElement("div");
-    back.classList.add("back");
-    content.appendChild(front);
-    content.appendChild(back);
-    card.appendChild(content);
-    hand.appendChild(card);
-  }
-
   const cards = hand.querySelectorAll(".card");
-  const cardProps = [];
-  cards.forEach(() =>
-    cardProps.push({
-      translateX: 0,
-      translateY: 0,
-      rotateX: 0,
-      rotateY: 0,
-      rotateZ: 0,
-      scale: 1,
-      zIndex: 1,
-      transformOrigin: "50% 50%",
-      contentRotateY: 0,
-      contentRotateZ: 0,
-      hoverScale: 1,
-    })
-  );
+  const cardProps = [...cards].map(() => ({
+    translateX: 0,
+    translateY: 0,
+    rotateX: 0,
+    rotateY: 0,
+    rotateZ: 0,
+    scale: 1,
+    zIndex: 1,
+    transformOrigin: "50% 50%",
+    contentRotateY: 0,
+    contentRotateZ: 0,
+    hoverScale: 1,
+  }));
 
   const applyLayout = (state, transition) => {
-    console.log(state.layout, transition);
+    // console.log(state.layout, transition);
     const delay = transition.stagger
       ? (transition.duration / cards.length) * transition.stagger
       : 0;

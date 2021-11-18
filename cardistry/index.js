@@ -1,5 +1,5 @@
-import { cardistry } from "./src/script";
+import { play } from "./src/script.js";
+import { setupCards } from "./src/setup.js";
+import { build } from "./src/builder.js";
 
-console.log("helloo");
-
-export default { cardistry };
+export { play, setupCards, build };

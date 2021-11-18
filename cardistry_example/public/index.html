@@ -16,25 +16,48 @@
       src="https://livejs.com/live.js"
     ></script>
 
-    <script defer src="script.js"></script>
+    <script defer src="script.min.js"></script>
+
+    <!-- <script defer src="script.js"></script> -->
 
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <nav class="navbar">
+      <ul>
+        <li>
+          <a href="">Cardistry</a>
+        </li>
+        <li><a href="">Home</a></li>
+        <li><a href="">Examples</a></li>
+        <li><a href="">Documentation</a></li>
+        <li><a href="">Presets</a></li>
+      </ul>
+    </nav>
     <main class="container">
-      <h1>Welcome to cardistry</h1>
+      <section class="hero">
+        <!-- <div class="hand spread-x-hover center"></div> -->
+        <div class="hand spread-x center"></div>
+      </section>
 
-      <div class="hand spread-x-hover center"></div>
+      <div class="introduction">
+        <h2>A versatile card animation engine</h2>
+        <button>Get Started</button>
+      </div>
 
-      <div class="hand spread-x center"></div>
-      <div class="hand rotate-x center"></div>
+      <!-- <div class="hand rotate-x center"></div>
       <div class="hand flip-x center"></div>
-      <div class="hand fan center large"></div>
+      <div class="hand fan center large"></div> -->
       <!-- <div class="hand spread-y"></div> -->
-      <div class="hand combined center large"></div>
-      <div class="hand spread-xy center large"></div>
+      <!-- <div class="hand combined center large"></div>
+      <div class="hand spread-xy center large"></div> -->
     </main>
+
+    <footer class="footer">
+      <p>Found a bug? Contribute by fixing it on GitHub</p>
+      <strong>Made with ♥ by Bob Shoaun Ng</strong>
+    </footer>
   </body>
   <script type="module">
     // cardistry({
@@ -56,142 +79,142 @@
     //   ],
     // });
 
-    cardistry({
-      target: ".spread-x",
-      states: [
-        { layout: "stack", duration: 300 },
+    // cardistry({
+    //   target: ".spread-x",
+    //   states: [
+    //     { layout: "stack", duration: 300 },
 
-        { stagger: 0.3, duration: 500 },
-        { layout: "spread-x", duration: 500, anchor: "center" },
-        { stagger: 0.8, duration: 500 },
-        { layout: "stack", duration: 500 },
+    //     { stagger: 0.3, duration: 500 },
+    //     { layout: "spread-x", duration: 500, anchor: "center" },
+    //     { stagger: 0.8, duration: 500 },
+    //     { layout: "stack", duration: 500 },
 
-        { stagger: 0.5, duration: 500 },
-        { layout: "spread-x", duration: 500, anchor: "left" },
-        { stagger: 1, duration: 1000 },
-        { layout: "stack", duration: 500 },
+    //     { stagger: 0.5, duration: 500 },
+    //     { layout: "spread-x", duration: 500, anchor: "left" },
+    //     { stagger: 1, duration: 1000 },
+    //     { layout: "stack", duration: 500 },
 
-        { stagger: 0.5, duration: 500 },
-        { layout: "spread-x", duration: 500, anchor: "right" },
-        { stagger: 1, duration: 1000 },
-        { layout: "stack", duration: 500 },
-      ],
-      loop: true,
-    });
+    //     { stagger: 0.5, duration: 500 },
+    //     { layout: "spread-x", duration: 500, anchor: "right" },
+    //     { stagger: 1, duration: 1000 },
+    //     { layout: "stack", duration: 500 },
+    //   ],
+    //   loop: true,
+    // });
 
-    cardistry({
-      target: ".spread-y",
-      states: [
-        { layout: "stack", duration: 300 },
+    // cardistry({
+    //   target: ".spread-y",
+    //   states: [
+    //     { layout: "stack", duration: 300 },
 
-        { stagger: 0.5, duration: 500 },
-        { layout: "spread-y", duration: 1000 },
-        { stagger: 1, duration: 500 },
-        { layout: "stack", duration: 500 },
-      ],
-      loop: true,
-    });
+    //     { stagger: 0.5, duration: 500 },
+    //     { layout: "spread-y", duration: 1000 },
+    //     { stagger: 1, duration: 500 },
+    //     { layout: "stack", duration: 500 },
+    //   ],
+    //   loop: true,
+    // });
 
-    cardistry({
-      target: ".rotate-x",
-      states: [
-        { layout: "stack", duration: 300 },
+    // cardistry({
+    //   target: ".rotate-x",
+    //   states: [
+    //     { layout: "stack", duration: 300 },
 
-        { stagger: 0.5, duration: 500 },
-        { layout: "rotate-x", duration: 1000 },
-        { stagger: 1, duration: 500 },
-        { layout: "stack", duration: 500 },
-      ],
-      loop: true,
-    });
+    //     { stagger: 0.5, duration: 500 },
+    //     { layout: "rotate-x", duration: 1000 },
+    //     { stagger: 1, duration: 500 },
+    //     { layout: "stack", duration: 500 },
+    //   ],
+    //   loop: true,
+    // });
 
-    cardistry({
-      target: ".flip-x",
-      states: [
-        { layout: "stack", duration: 300 },
+    // cardistry({
+    //   target: ".flip-x",
+    //   states: [
+    //     { layout: "stack", duration: 300 },
 
-        { stagger: 0.5, duration: 500 },
-        { layout: "spread-x", duration: 500, anchor: "center" },
+    //     { stagger: 0.5, duration: 500 },
+    //     { layout: "spread-x", duration: 500, anchor: "center" },
 
-        { stagger: 0.5, duration: 2000 },
-        { layout: "flip-x", duration: 1000 },
+    //     { stagger: 0.5, duration: 2000 },
+    //     { layout: "flip-x", duration: 1000 },
 
-        { stagger: 1, duration: 500 },
-        { layout: "stack", duration: 500 },
-      ],
-      loop: true,
-    });
+    //     { stagger: 1, duration: 500 },
+    //     { layout: "stack", duration: 500 },
+    //   ],
+    //   loop: true,
+    // });
 
-    cardistry({
-      target: ".fan",
-      states: [
-        { layout: "stack", duration: 300 },
+    // cardistry({
+    //   target: ".fan",
+    //   states: [
+    //     { layout: "stack", duration: 300 },
 
-        { stagger: 0.3, duration: 500 },
-        { layout: "fan", duration: 500, anchor: "center" },
-        { stagger: 0.8, duration: 500 },
-        { layout: "stack", duration: 500 },
+    //     { stagger: 0.3, duration: 500 },
+    //     { layout: "fan", duration: 500, anchor: "center" },
+    //     { stagger: 0.8, duration: 500 },
+    //     { layout: "stack", duration: 500 },
 
-        { stagger: 0.5, duration: 500 },
-        { layout: "fan", duration: 500, anchor: "left" },
-        { stagger: 0.8, duration: 500 },
-        { layout: "stack", duration: 500 },
+    //     { stagger: 0.5, duration: 500 },
+    //     { layout: "fan", duration: 500, anchor: "left" },
+    //     { stagger: 0.8, duration: 500 },
+    //     { layout: "stack", duration: 500 },
 
-        { stagger: 0.5, duration: 500 },
-        { layout: "fan", duration: 500, anchor: "right" },
-        { stagger: 0.8, duration: 500 },
-        { layout: "stack", duration: 500 },
-      ],
-      loop: true,
-    });
+    //     { stagger: 0.5, duration: 500 },
+    //     { layout: "fan", duration: 500, anchor: "right" },
+    //     { stagger: 0.8, duration: 500 },
+    //     { layout: "stack", duration: 500 },
+    //   ],
+    //   loop: true,
+    // });
 
-    cardistry({
-      target: ".combined",
-      states: [
-        { layout: "stack", duration: 500 },
+    // cardistry({
+    //   target: ".combined",
+    //   states: [
+    //     { layout: "stack", duration: 500 },
 
-        { stagger: 0.5, duration: 500 },
-        { layout: "spread-x", duration: 500, anchor: "center" },
+    //     { stagger: 0.5, duration: 500 },
+    //     { layout: "spread-x", duration: 500, anchor: "center" },
 
-        { stagger: 0.5, duration: 500 },
-        { layout: "rotate-x", duration: 500, anchor: "center" },
+    //     { stagger: 0.5, duration: 500 },
+    //     { layout: "rotate-x", duration: 500, anchor: "center" },
 
-        { stagger: 0.5, duration: 500 },
-        { layout: "fan", duration: 500, anchor: "center" },
+    //     { stagger: 0.5, duration: 500 },
+    //     { layout: "fan", duration: 500, anchor: "center" },
 
-        { stagger: 0.5, duration: 500 },
-        { layout: "flip-x", duration: 500 },
+    //     { stagger: 0.5, duration: 500 },
+    //     { layout: "flip-x", duration: 500 },
 
-        // { stagger: 0.4, duration: 3000 },
-        // { layout: "flip", duration: 1000 },
+    //     // { stagger: 0.4, duration: 3000 },
+    //     // { layout: "flip", duration: 1000 },
 
-        // { stagger: 0.4, duration: 500 },
-        // { layout: "fan", duration: 500 },
-        // { stagger: 0.5, duration: 500 },
-        // { layout: "flip", duration: 500 },
-        // { stagger: 0.8, duration: 600 },
-        // { layout: "stack", duration: 500 },
+    //     // { stagger: 0.4, duration: 500 },
+    //     // { layout: "fan", duration: 500 },
+    //     // { stagger: 0.5, duration: 500 },
+    //     // { layout: "flip", duration: 500 },
+    //     // { stagger: 0.8, duration: 600 },
+    //     // { layout: "stack", duration: 500 },
 
-        // { stagger: 0.5, duration: 700 },
-        // { layout: "splash", duration: 500 },
+    //     // { stagger: 0.5, duration: 700 },
+    //     // { layout: "splash", duration: 500 },
 
-        { stagger: 1, duration: 500 },
-        { layout: "stack", duration: 500 },
-      ],
-      loop: true,
-    });
+    //     { stagger: 1, duration: 500 },
+    //     { layout: "stack", duration: 500 },
+    //   ],
+    //   loop: true,
+    // });
 
-    cardistry({
-      target: ".spread-xy",
-      states: [
-        { layout: "stack", duration: 300 },
+    // cardistry({
+    //   target: ".spread-xy",
+    //   states: [
+    //     { layout: "stack", duration: 300 },
 
-        { stagger: 0.3, duration: 500 },
-        { layout: "spread-xy", duration: 500, anchor: "center" },
-        { stagger: 0.8, duration: 500 },
-        { layout: "stack", duration: 500 },
-      ],
-      loop: true,
-    });
+    //     { stagger: 0.3, duration: 500 },
+    //     { layout: "spread-xy", duration: 500, anchor: "center" },
+    //     { stagger: 0.8, duration: 500 },
+    //     { layout: "stack", duration: 500 },
+    //   ],
+    //   loop: true,
+    // });
   </script>
 </html>
