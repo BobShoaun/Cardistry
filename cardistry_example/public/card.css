@@ -1,0 +1,91 @@
+.card {
+  cursor: pointer;
+
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+
+  position: absolute;
+
+  --card-width: 7em;
+  width: var(--card-width);
+  height: calc(var(--card-width) * 1.55);
+
+  left: 50%;
+  margin-left: calc(-1 * var(--card-width) / 2);
+  top: 50%;
+  margin-top: calc(-1 * var(--card-width) / 2);
+}
+
+.card .content {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition-property: all;
+  transition-timing-function: linear;
+  border-radius: 5px;
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.card .front,
+.card .back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 5px;
+}
+
+.card .front {
+}
+
+.card .back {
+  transform: rotateY(180deg);
+}
+
+.playing-card {
+  color: var(--clr-primary);
+}
+
+.playing-card .front {
+  background: white;
+  padding: 5px;
+}
+
+.playing-card .back {
+  background: lightcoral;
+}
+
+.playing-card .front {
+  display: flex;
+}
+
+.playing-card .suit {
+  font-size: 1.3rem;
+}
+
+.playing-card .center-rank {
+  margin: auto;
+  font-size: 4rem;
+}
+
+.playing-card .top-left {
+  text-align: center;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.playing-card .bottom-right {
+  transform: rotate(180deg);
+  text-align: center;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.deck {
+  position: relative;
+  height: 100%;
+  /* margin: auto; */
+}

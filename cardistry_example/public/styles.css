@@ -6,9 +6,12 @@
 
 :root {
   --clr-grey-1: whitesmoke;
-  --clr-grey-2: grey;
-  --clr-grey-3: rgb(0, 82, 0);
+  --clr-grey-2: rgb(219, 219, 219);
+  --clr-grey-3: rgb(116, 116, 116);
+  --clr-grey-4: rgb(70, 70, 70);
+  --clr-grey-5: rgb(54, 54, 54);
   --clr-primary: crimson;
+  --clr-secondary: rgb(0, 82, 0);
 }
 
 .container {
@@ -17,39 +20,13 @@
   padding: 2em;
 }
 
-.navbar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 10;
-  background: var(--clr-grey-1);
-}
-
-.navbar ul {
-  display: flex;
-  list-style: none;
-  gap: 1.5em;
-  padding: 1.5em 2em;
-  border-bottom: 1px solid var(--clr-grey-2);
-  font-size: 0.9rem;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: var(--clr-grey-3);
-}
-
-.navbar ul > li:first-child {
-  margin-right: auto;
-  font-size: 1.1rem;
-  font-style: italic;
-}
-
 .hero {
-  background: rgb(0, 82, 0);
-  padding: 10em;
+  background: var(--clr-secondary);
+  /* padding: 10em; */
+  height: 70vh;
   overflow: hidden;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .introduction {
@@ -64,96 +41,22 @@
 }
 
 .introduction button {
-  font-size: 1.5em;
+  font-size: 1.25em;
   padding: 0.5em 1em;
   cursor: pointer;
   font-weight: bold;
-  color: white;
-  background: crimson;
   border: none;
   border-radius: 5px;
 }
 
-.footer {
-  text-align: center;
-  padding: 4em 1em;
-  background: var(--clr-grey-1);
-  border-top: 1px solid var(--clr-grey-2);
-  font-size: 0.8rem;
+.introduction .get-started {
+  color: white;
+  background: crimson;
+  margin-inline: 0.25em;
 }
 
-.footer p {
-  font-size: 1rem;
-  margin-bottom: 2em;
-}
-
-@keyframes spin {
-  from {
-    --rotate: 0deg;
-    transform: translateY(var(--translateY)) scale(var(--scale));
-  }
-  to {
-    --rotate: 180deg;
-    transform: translateY(var(--translateY)) scale(var(--scale));
-  }
-}
-/* 
-.hand {
-  display: flex;
-  gap: 1em;
-} */
-
-.card {
-  cursor: pointer;
-
-  transition-property: all;
-  transition-timing-function: linear;
-
-  position: absolute;
-}
-
-.card .content {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-  transition-property: all;
-  transition-timing-function: linear;
-  border-radius: 5px;
-  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-}
-
-.card .front,
-.card .back {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  border-radius: 5px;
-}
-
-.card .front {
-  background: lightblue;
-}
-
-.card .back {
-  background: lightcoral;
-  transform: rotateY(180deg);
-}
-
-.hand {
-  position: relative;
-  margin-block: 3em;
-  max-width: 5em;
-  min-height: 10em;
-  display: flex;
-  align-items: center;
-}
-
-.hand.center {
-  margin: auto;
-}
-
-.hand.large {
-  min-height: 20em;
+.introduction .source {
+  color: var(--clr-grey-4);
+  background: var(--clr-grey-2);
+  margin-inline: 0.25em;
 }

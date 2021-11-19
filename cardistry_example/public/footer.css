@@ -1,0 +1,13 @@
+.footer {
+  text-align: center;
+  padding: 4em 1em;
+  background: var(--clr-grey-1);
+  border-top: 1px solid var(--clr-grey-2);
+  font-size: 0.8rem;
+}
+
+.footer p {
+  font-size: 1rem;
+  margin-bottom: 2em;
+  color: var(--clr-grey-4);
+}
