@@ -12,8 +12,30 @@ const spreadRight = () => ({
 
 const stack = () => ({
   translateX: 0,
+  translateY: 0,
   rotateZ: 0,
   duration: 500,
+  delay: 500,
+});
+
+const disperse = () => ({
+  translateX: () => Math.random() * 200 - 100,
+  translateY: () => Math.random() * 200 - 100,
+  rotateZ: () => Math.random() * 180 - 90,
+  duration: 500,
+  delay: i => i * 100,
+});
+
+const fan = () => ({
+  transformOrigin: "50% 200%",
+  rotateZ: i => i * 5 - 40,
+  duration: 500,
+  delay: 1000,
+});
+
+const flip = () => ({
+  contentRotateY: 180,
+  duration: 1000,
   delay: 500,
 });
 
@@ -23,26 +45,19 @@ build({
   target: ".spread-x",
   loop: true,
   states: [
-    {
-      translateX: () => Math.random() * 200 - 100,
-      translateY: () => Math.random() * 200 - 100,
-      rotateZ: () => Math.random() * 180 - 90,
-      duration: 500,
-      delay: i => i * 100,
-    },
-    spreadRight(),
     stack(),
-    {
-      translateX: i => i * 25,
-      // rotateZ: i => i * 10,
-      duration: 500,
-      delay: 500,
-    },
+    fan(),
+    stack(),
+    spreadRight(),
+    flip(),
+    disperse(),
+    spreadRight(),
     {
       translateY: 100,
       duration: 500,
-      delay: i => (15 - i) * 100,
+      delay: (i, n) => (15 - i) * 100,
     },
+
     // {
     //   duration: 500,
     // },
