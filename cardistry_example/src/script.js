@@ -1,4 +1,5 @@
-import { play, setupCards, build } from "cardistry";
+import cardistry from "cardistry";
+import { setupCards } from "cardistry/setup";
 import {
   stack,
   fan,
@@ -7,11 +8,11 @@ import {
   spreadLeft,
   disperse,
   spreadCenter,
-} from "cardistry/presets.js";
+} from "cardistry/presets";
 
 setupCards(".spread-x");
 
-build({
+cardistry({
   target: ".spread-x",
   loop: true,
   // relative: true,

@@ -1,4 +1,5 @@
-import { play, setupCards, build } from "cardistry";
+import cardistry from "cardistry";
+import { setupCards } from "cardistry/setup";
 import {
   stack,
   fan,
@@ -7,14 +8,14 @@ import {
   spreadLeft,
   disperse,
   spreadCenter,
-} from "cardistry/presets.js";
+} from "cardistry/presets";
 
 setupCards(".hand-fan");
 setupCards(".example.distribute");
 setupCards(".example.waterfall");
 setupCards(".example.drag-n-drop");
 
-build({
+cardistry({
   target: ".example.drag-n-drop",
   states: [spreadCenter()],
 });
@@ -38,7 +39,7 @@ cards.forEach(card => {
   };
 });
 
-build({
+cardistry({
   target: ".example.waterfall",
   // loop: true,
   relative: true,
@@ -52,7 +53,7 @@ build({
   ],
 });
 
-build({
+cardistry({
   target: ".hand-fan",
   // loop: true,
   relative: true,
@@ -76,7 +77,7 @@ build({
   ],
 });
 
-build({
+cardistry({
   target: ".example.distribute",
   loop: true,
   relative: true,

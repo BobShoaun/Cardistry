@@ -5,7 +5,7 @@ class Navbar extends HTMLElement {
       <nav class="navbar">
         <ul>
           <li>
-            <a href="">Cardistry</a>
+            <a href="/">Cardistry</a>
             <span>v 0.2.0a</span>
           </li>
           <li><a href="/">Home</a></li>
