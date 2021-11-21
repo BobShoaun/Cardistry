@@ -1,14 +1,14 @@
 .card {
   cursor: pointer;
 
-  transition-property: all;
+  transition-property: transform, z-index;
   transition-timing-function: ease-in-out;
 
   position: absolute;
 
   --card-width: 7em;
   width: var(--card-width);
-  height: calc(var(--card-width) * 1.55);
+  height: calc(var(--card-width) * 1.4);
 
   left: 50%;
   margin-left: calc(-1 * var(--card-width) / 2);
@@ -20,7 +20,7 @@
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  transition-property: all;
+  transition-property: transform;
   transition-timing-function: linear;
   border-radius: 5px;
   /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
@@ -34,6 +34,7 @@
   inset: 0;
   backface-visibility: hidden;
   border-radius: 5px;
+  z-index: 1;
 }
 
 .card .front {
@@ -41,6 +42,12 @@
 
 .card .back {
   transform: rotateY(180deg);
+}
+
+.card .back img {
+  object-fit: scale-down;
+  width: 100%;
+  height: 100%;
 }
 
 .playing-card {

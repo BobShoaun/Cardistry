@@ -1,48 +1,47 @@
-export const build = async ({ target, states, loop }) => {
+export const build = async ({ target, states, loop, relative }) => {
   const hand = document.querySelector(target);
   if (!hand) return;
 
   const cards = hand.querySelectorAll(".card");
-  const cardProps = [...cards].map(() => ({
-    translateX: 0,
-    translateY: 0,
-    rotateX: 0,
-    rotateY: 0,
-    rotateZ: 0,
-    scale: 1,
-    zIndex: 1,
-    transformOrigin: "50% 50%",
-    contentRotateY: 0,
-    contentRotateZ: 0,
-    hoverScale: 1,
-    duration: 0,
-    delay: 0,
-    timing: "ease",
-  }));
+  const cardContents = [...cards].map(card => card.querySelector(".content"));
+  const cardProps = [...cards];
+
+  const resetCardProps = transitionPropsOnly => {
+    cardProps.forEach(card => {
+      card.duration = 200;
+      card.delay = 0;
+      card.timing = "ease";
+      if (transitionPropsOnly) return;
+      card.translateX = 0;
+      card.translateY = 0;
+      card.rotateX = 0;
+      card.rotateY = 0;
+      card.rotateZ = 0;
+      card.scale = 1;
+      card.zIndex = 1;
+      card.transformOrigin = "50% 50%";
+      card.contentRotateY = 0;
+      card.contentRotateZ = 0;
+      card.hoverScale = 1;
+    });
+  };
+
+  resetCardProps();
+
+  const getValue = value => (typeof value === "function" ? value(i, cards.length) : value);
 
   const apply = async state => {
-    cardProps.forEach((cardProp, i) => {
-      for (const [prop, value] of Object.entries(state)) {
-        if (typeof value === "function") {
-          cardProp[prop] = value(i);
-          continue;
-        }
-        cardProp[prop] = value;
-      }
-    });
+    resetCardProps(relative);
 
-    if (state.transformOrigin) {
-      cards.forEach((card, i) => {
-        const { transformOrigin } = cardProps[i];
-        card.style.transformOrigin = transformOrigin;
-      });
+    for (let i = 0; i < cards.length; i++) {
+      const index = state.flip ? cards.length - i - 1 : i;
 
-      await new Promise(resolve => setTimeout(resolve, 20)); // sleep
+      for (const [prop, value] of Object.entries(state))
+        cardProps[index][prop] = typeof value === "function" ? value(index, cards.length) : value;
     }
 
     const totalDurations = [];
-
-    cards.forEach((card, i) => {
+    for (let i = 0; i < cards.length; i++) {
       const {
         translateX,
         translateY,
@@ -55,6 +54,8 @@ export const build = async ({ target, states, loop }) => {
         contentRotateY,
         contentRotateZ,
         hoverScale,
+        hover,
+        focus,
         duration,
         delay,
         timing,
@@ -62,30 +63,60 @@ export const build = async ({ target, states, loop }) => {
 
       totalDurations[i] = delay + duration;
 
-      card.style.transformOrigin = transformOrigin;
-      card.style.transform = `translateX(${translateX}px) translateY(${translateY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${scale})`;
-      card.style.transitionDuration = `${duration}ms`;
-      card.style.transitionDelay = `${delay}ms`;
-      card.style.transitionTimingFunction = timing;
-      // card.style.transitionDelay = `${1000}ms`;
-      // card.style.zIndex = zIndex;
+      cards[i].style.zIndex = zIndex;
 
-      const cardContent = card.querySelector(".content");
-      cardContent.style.transform = `rotateY(${contentRotateY}deg) rotateZ(${contentRotateZ}deg)`;
-      cardContent.style.transitionDuration = `${duration}ms`;
-      cardContent.style.transitionDelay = `${delay}ms`;
-    });
+      cards[i].style.transitionDuration = `${duration}ms`;
+      cards[i].style.transitionDelay = `${delay}ms`;
+      cards[i].style.transitionTimingFunction = timing;
 
-    return new Promise((resolve, reject) =>
-      setTimeout(() => resolve, Math.max(...totalDurations))
-    );
+      cards[i].style.transformOrigin = transformOrigin;
+      cards[i].style.transform = `translateX(${translateX}px) 
+                                  translateY(${translateY}px) 
+                                  rotateX(${rotateX}deg) 
+                                  rotateY(${rotateY}deg) 
+                                  rotateZ(${rotateZ}deg) 
+                                  scale(${scale})`;
+
+      cardContents[i].style.transitionDuration = `${duration}ms`;
+      cardContents[i].style.transitionDelay = `${delay}ms`;
+      cardContents[i].style.transform = `rotateY(${contentRotateY}deg) 
+                                         rotateZ(${contentRotateZ}deg)`;
+
+      cards[i].onmouseover = () => {
+        cardContents[i].style.transform = `translateX(${hover?.translateX ?? 0}px) 
+                                           translateY(${hover?.translateY ?? 0}px)
+                                           rotateY(${hover?.rotateY}deg) 
+                                           rotateZ(${contentRotateZ}deg) 
+                                           scale(${hover?.scale ?? 1})`;
+      };
+
+      cards[i].onmouseleave = () => {
+        cardContents[i].style.transform = `rotateY(${contentRotateY}deg) 
+                                           rotateZ(${contentRotateZ}deg) 
+                                           scale(${scale})`;
+      };
+
+      cards[i].onfocus = () => {
+        cardContents[i].style.transform = `translateX(${focus?.translateX ?? 0}px) 
+                                           translateY(${focus?.translateY ?? 0}px)
+                                           rotateY(${focus?.rotateY}deg) 
+                                           rotateZ(${contentRotateZ}deg) 
+                                           scale(${focus?.scale ?? 1})`;
+      };
+
+      cards[i].onblur = () => {
+        cardContents[i].style.transform = `rotateY(${contentRotateY}deg) 
+                                           rotateZ(${contentRotateZ}deg) 
+                                           scale(${scale})`;
+      };
+    }
+
+    return new Promise((resolve, reject) => setTimeout(resolve, Math.max(...totalDurations)));
   };
 
   await new Promise(resolve => setTimeout(resolve, 500)); // sleep
 
-  if (typeof loop === "boolean")
-    while (loop) for (const state of states) await apply(state);
+  if (typeof loop === "boolean") while (loop) for (const state of states) await apply(state);
 
-  for (let i = loop ?? 0; i >= 0; i--)
-    for (const state of states) await apply(state);
+  for (let i = loop ?? 0; i >= 0; i--) for (const state of states) await apply(state);
 };

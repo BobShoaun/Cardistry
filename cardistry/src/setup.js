@@ -10,6 +10,7 @@ export const setupCards = target => {
 
   for (let i = 0; i < numCards; i++) {
     const newCard = card.cloneNode(true);
+    newCard.tabIndex = i + 10;
     hand.appendChild(newCard);
 
     // const card = document.createElement("div");
