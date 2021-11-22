@@ -1,5 +1,5 @@
 {
-  "name": "cardistry_example",
+  "name": "cardistry-website",
   "version": "1.0.0",
   "description": "example website for the cardistry library",
   "main": "index.js",

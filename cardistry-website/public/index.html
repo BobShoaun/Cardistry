@@ -12,9 +12,11 @@
     <!-- only for development, refreshes browser on file change -->
     <script defer type="text/javascript" src="https://livejs.com/live.js"></script>
 
-    <script defer src="js/script.min.js"></script>
+    <script defer src="components/deck.js"></script>
     <script defer src="components/navbar.js"></script>
     <script defer src="components/footer.js"></script>
+
+    <script defer src="js/script.min.js"></script>
 
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -31,36 +33,11 @@
         <button class="source">Source</button>
       </div>
 
-      <section class="hero">
-        <div class="deck spread-x">
-          <div class="card playing-card">
-            <div class="content">
-              <div class="front">
-                <div class="top-left">
-                  <p class="rank">A</p>
-                  <p class="suit">♥</p>
-                </div>
-                <div class="bottom-right">
-                  <p class="rank">A</p>
-                  <p class="suit">♥</p>
-                </div>
-                <p class="center-rank">♥</p>
-              </div>
-              <div class="back"></div>
-            </div>
-          </div>
-        </div>
+      <section class="poker-table h-30">
+        <app-deck type="deck spread-x"></app-deck>
       </section>
-
-      <!-- <div class="hand rotate-x center"></div>
-      <div class="hand flip-x center"></div>
-      <div class="hand fan center large"></div> -->
-      <!-- <div class="hand spread-y"></div> -->
-      <!-- <div class="hand combined center large"></div>
-      <div class="hand spread-xy center large"></div> -->
     </main>
 
     <app-footer></app-footer>
   </body>
-  <script type="module"></script>
 </html>

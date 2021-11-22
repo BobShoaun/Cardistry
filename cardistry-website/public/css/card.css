@@ -7,13 +7,14 @@
   position: absolute;
 
   --card-width: 7em;
+  --card-height: calc(var(--card-width) * 1.4);
   width: var(--card-width);
-  height: calc(var(--card-width) * 1.4);
+  height: var(--card-height);
 
   left: 50%;
   margin-left: calc(-1 * var(--card-width) / 2);
   top: 50%;
-  margin-top: calc(-1 * var(--card-width) / 2);
+  margin-top: calc(-1 * var(--card-height) / 2);
 }
 
 .card .content {
@@ -91,8 +92,8 @@
   right: 5px;
 }
 
+app-deck,
 .deck {
   position: relative;
   height: 100%;
-  /* margin: auto; */
 }

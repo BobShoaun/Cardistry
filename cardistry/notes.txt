@@ -1,0 +1,7 @@
+to update package:
+npm version prepatch --preid alpha
+npm version preminor --preid alpha
+npm version premajor --preid alpha
+
+to publish package:
+npm publish

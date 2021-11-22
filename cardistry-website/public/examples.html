@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cardistry - Examples</title>
+
+    <!-- only for development, refreshes browser on file change -->
+    <script defer type="text/javascript" src="https://livejs.com/live.js"></script>
+
+    <script defer src="components/deck.js"></script>
+    <script defer src="components/example.js"></script>
+    <script defer src="components/navbar.js"></script>
+    <script defer src="components/footer.js"></script>
+    <script defer src="js/examples.min.js"></script>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/card.css" />
+  </head>
+  <body>
+    <app-navbar></app-navbar>
+
+    <main class="container">
+      <app-example
+        title="Fan"
+        subtitle="Hover to flip each card"
+        type="deck hand-fan"
+      ></app-example>
+
+      <app-example
+        title="Distribute"
+        subtitle="Animation of distributing cards"
+        type="deck example distribute"
+        height="50"
+      ></app-example>
+
+      <app-example
+        title="Waterfall"
+        subtitle="Animation of distributing cards"
+        type="deck example waterfall"
+        height="50"
+      ></app-example>
+
+      <app-example
+        title="Drag N Drop"
+        subtitle="Animation of distributing cards"
+        type="deck example drag-n-drop"
+        draggable="true"
+      ></app-example>
+    </main>
+
+    <app-footer></app-footer>
+  </body>
+</html>
