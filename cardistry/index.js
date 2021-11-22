@@ -1,3 +1,4 @@
+// main function for animation
 const cardistry = async ({ target, states, loop, relative }) => {
   const hand = document.querySelector(target);
   if (!hand) return;
@@ -114,7 +115,7 @@ const cardistry = async ({ target, states, loop, relative }) => {
     return new Promise((resolve, reject) => setTimeout(resolve, Math.max(...totalDurations)));
   };
 
-  await new Promise(resolve => setTimeout(resolve, 500)); // sleep
+  // await new Promise(resolve => setTimeout(resolve, 500)); // sleep
 
   if (typeof loop === "boolean") while (loop) for (const state of states) await apply(state);
 

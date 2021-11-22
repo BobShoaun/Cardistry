@@ -10,20 +10,53 @@ import {
   spreadCenter,
 } from "cardistry/presets";
 
-setupCards(".spread-x");
+setupCards(".example.main");
 
 cardistry({
-  target: ".spread-x",
+  target: ".example.main",
   loop: true,
   // relative: true,
   states: [
-    stack(),
-    disperse(),
-    spreadRight(),
     {
-      translateY: 100,
-      duration: 500,
-      delay: (i, n) => (n - i) * 100,
+      delay: 500,
+    },
+    {
+      ...spreadCenter(500),
+      delay: 500,
+    },
+    {
+      delay: 500,
+      ...fan(),
+    },
+    {
+      delay: 700,
+      translateY: (i, n) => (i + 0.5 - n / 2) * 20,
+      translateX: (i, n) => (i + 0.5 - n / 2) * 25,
+      duration: 400,
+    },
+    {
+      delay: 400,
+      duration: 400,
+      translateY: (i, n) => (i + 0.5 - n / 2) * -20,
+      translateX: (i, n) => (i + 0.5 - n / 2) * -25,
+    },
+    {
+      delay: i => i * 50,
+      translateX: (i, n) => (i + 0.5 - n / 2) * -25,
+    },
+    {
+      ...flip(),
+      translateX: (i, n) => (i + 0.5 - n / 2) * -25,
+      delay: i => i * 50,
+      zIndex: (i, n) => n - i,
+    },
+    {
+      contentRotateY: 180,
+      delay: 500,
+    },
+    {
+      contentRotateY: 180,
+      ...disperse(500),
     },
   ],
 });

@@ -1,3 +1,5 @@
+// temporary function, so i dont have to copy paste all the cards in the DOM manually
+
 export const setupCards = target => {
   const hand = document.querySelector(target);
   if (!hand) return;
