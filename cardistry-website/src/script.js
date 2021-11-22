@@ -18,7 +18,7 @@ cardistry({
   // relative: true,
   states: [
     {
-      delay: 500,
+      delay: 700,
     },
     {
       ...spreadCenter(500),
@@ -26,16 +26,16 @@ cardistry({
     },
     {
       delay: 500,
-      ...fan(),
+      ...fan(7),
     },
     {
       delay: 700,
       translateY: (i, n) => (i + 0.5 - n / 2) * 20,
       translateX: (i, n) => (i + 0.5 - n / 2) * 25,
-      duration: 400,
+      duration: 300,
     },
     {
-      delay: 400,
+      delay: 200,
       duration: 400,
       translateY: (i, n) => (i + 0.5 - n / 2) * -20,
       translateX: (i, n) => (i + 0.5 - n / 2) * -25,
@@ -50,9 +50,15 @@ cardistry({
       delay: i => i * 50,
       zIndex: (i, n) => n - i,
     },
+    // {
+    //   rotateZ: (i, n) => (i + 0.5 - n / 2) * -20,
+    //   translateX: (i, n) => (i + 0.5 - n / 2) * -25,
+    //   delay: 500,
+    //   contentRotateY: 180,
+    // },
     {
       contentRotateY: 180,
-      delay: 500,
+      delay: 700,
     },
     {
       contentRotateY: 180,

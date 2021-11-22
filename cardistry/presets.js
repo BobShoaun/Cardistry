@@ -29,9 +29,9 @@ export const disperse = (amount = 200) => ({
   delay: (i, n) => (n - i) * 100,
 });
 
-export const fan = () => ({
+export const fan = (angle = 5) => ({
   transformOrigin: "50% 200%",
-  rotateZ: (i, n) => (i + 0.5 - n / 2) * 5,
+  rotateZ: (i, n) => (i + 0.5 - n / 2) * angle,
   duration: 500,
 });
 
