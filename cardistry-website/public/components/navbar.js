@@ -6,7 +6,7 @@ class Navbar extends HTMLElement {
         <ul>
           <li>
             <a href="/">Cardistry</a>
-            <span>v 0.2.0a</span>
+            <span>v 0.3.0a</span>
           </li>
           <li><a href="/">Home</a></li>
           <li><a href="/examples.html">Examples</a></li>
