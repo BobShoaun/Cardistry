@@ -8,7 +8,6 @@ import {
   disperse,
   spreadCenter,
 } from "cardistry/presets";
-
 import { setupCards } from "./helpers";
 
 setupCards(".example.spread");
