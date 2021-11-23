@@ -4,7 +4,7 @@ class Footer extends HTMLElement {
     this.innerHTML = /*html*/ `
       <footer class="footer">
         <p>Found a bug? Contribute by fixing it on GitHub</p>
-        <strong>Made with ♥ by Bob Shoaun Ng</strong>
+        <strong>Made with <span class="heart">♥</span> by <a href="https://www.bobng.me/" target="_blank">Bob Shoaun Ng</a></strong>
       </footer>
     `;
   }

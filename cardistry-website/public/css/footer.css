@@ -11,3 +11,9 @@
   margin-bottom: 2em;
   color: var(--clr-grey-4);
 }
+
+.heart {
+  color: crimson;
+  font-size: 1.3rem;
+  margin-inline: 0.2em;
+}
