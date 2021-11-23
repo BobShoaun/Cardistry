@@ -1,3 +1,5 @@
+// NOT USED, left for reference.
+
 export const play = ({ target, states, loop }) => {
   const hand = document.querySelector(target);
 
@@ -25,7 +27,7 @@ export const play = ({ target, states, loop }) => {
       : 0;
     const duration = transition.duration - (cards.length - 1) * delay;
 
-    cardProps.forEach((card) => {
+    cardProps.forEach(card => {
       // card.translateX = 0;
       // card.translateY = 0;
       // card.rotateZ = 0;
@@ -36,7 +38,7 @@ export const play = ({ target, states, loop }) => {
 
     switch (state.layout) {
       case "stack":
-        cardProps.forEach((card) => {
+        cardProps.forEach(card => {
           card.translateX = 0;
           card.translateY = 0;
           card.rotateZ = 0;
@@ -123,7 +125,7 @@ export const play = ({ target, states, loop }) => {
         break;
       case "spread-xy": {
         // const radius = 8;
-        const f = (x) => {
+        const f = x => {
           return x;
         };
 
@@ -141,7 +143,7 @@ export const play = ({ target, states, loop }) => {
         break;
       }
       case "hover": {
-        cardProps.forEach((card) => {
+        cardProps.forEach(card => {
           card.hoverScale = 1.1;
         });
         break;
@@ -193,20 +195,14 @@ export const play = ({ target, states, loop }) => {
   applyLayout(states[0], { stagger: false, duration: 0 }); // set initial layout
   let elapsedDuration = states[0].duration;
 
-  const totalDuration = states.reduce(
-    (prev, state) => prev + state.duration,
-    0
-  );
+  const totalDuration = states.reduce((prev, state) => prev + state.duration, 0);
 
   for (let i = 1; i < states.length; i += 2) {
     const transition = states[i];
     const state = states[i + 1];
     timeouts.push(
       setTimeout(() => {
-        if (loop)
-          intervals.push(
-            setInterval(() => applyLayout(state, transition), totalDuration)
-          );
+        if (loop) intervals.push(setInterval(() => applyLayout(state, transition), totalDuration));
         applyLayout(state, transition);
       }, elapsedDuration)
     );

@@ -7,8 +7,8 @@ export const spreadRight = () => ({
   translateX: i => i * 25,
 });
 
-export const spreadCenter = (duration = 200) => ({
-  translateX: (i, n) => (i + 0.5 - n / 2) * 25,
+export const spreadCenter = (duration = 200, amount = 25) => ({
+  translateX: (i, n) => (i + 0.5 - n / 2) * amount,
   duration,
 });
 

@@ -1,5 +1,4 @@
 import cardistry from "cardistry";
-import { setupCards } from "cardistry/setup";
 import {
   stack,
   fan,
@@ -9,6 +8,8 @@ import {
   disperse,
   spreadCenter,
 } from "cardistry/presets";
+
+import { setupCards } from "./helpers";
 
 setupCards(".example.main");
 

@@ -1,12 +1,8 @@
 // temporary function, so i dont have to copy paste all the cards in the DOM manually
 
-export const setupCards = target => {
+export const setupCards = (target, numCards = 15) => {
   const hand = document.querySelector(target);
   if (!hand) return;
-
-  const numCards = 15;
-  const cardHeight = 120;
-  const cardWidth = 75;
 
   const card = hand.querySelector(".card");
 
