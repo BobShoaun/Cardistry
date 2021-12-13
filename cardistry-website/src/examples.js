@@ -10,6 +10,7 @@ import {
 } from "cardistry/presets";
 import { setupCards } from "./helpers";
 
+setupCards(".example.move", 1);
 setupCards(".example.spread");
 setupCards(".example.flip");
 setupCards(".example.fan");
@@ -18,7 +19,6 @@ setupCards(".example.hover-flip");
 setupCards(".example.distribute");
 setupCards(".example.wave", 30);
 setupCards(".example.waterfall", 40);
-// setupCards(".example.drag-n-drop");
 
 cardistry({
   target: ".example.move",
@@ -234,14 +234,27 @@ cardistry({
   ],
 });
 
-// WIP: drag and drop
-// cardistry({
-//   target: ".example.drag-n-drop",
-//   states: [spreadCenter()],
-// });
+setupCards(".example.drag-n-drop-1", 5, true);
+setupCards(".example.drag-n-drop-2", 5, true);
 
-// const deck = document.querySelector(".example.drag-n-drop");
-// const cards = deck.querySelectorAll(".card");
+// WIP: drag and drop
+function dnd() {
+  cardistry({
+    target: ".example.drag-n-drop-1",
+    states: [spreadCenter(100, 50)],
+  });
+
+  cardistry({
+    target: ".example.drag-n-drop-2",
+    states: [spreadCenter(100, 50)],
+  });
+}
+dnd();
+
+// const deck = document.querySelector(".example.drag-n-drop-1");
+// const cards = deck.querySelectorAll("app-card");
+
+const containers = document.querySelectorAll(".drag-container");
 
 // deck.ondragover = e => {
 //   e.preventDefault();
@@ -250,11 +263,86 @@ cardistry({
 //   // console.log(box);
 // };
 
-// cards.forEach(card => {
-//   card.ondragstart = e => {
-//     e.target.classList.add("dragging");
-//   };
-//   card.ondragend = e => {
-//     e.target.classList.remove("dragging");
-//   };
-// });
+let dragClone = null;
+
+const initDragClone = (x, y) => {
+  // dragClone.style.position = "fixed";
+  // dragClone.style.zIndex = 999;
+  // dragClone.style.left = 0;
+  // dragClone.style.top = 0;
+  // dragClone.style.transitionDuration = 500;
+  // dragClone.style.transition = ""
+  // dragClone.style.pointerEvents = "none";
+  dragClone.classList.add("drag-clone");
+  dragClone.style.transform = `translateX(${x}px) translateY(${y}px)`;
+};
+
+let timestamp = null;
+let lastMouseX = null;
+let lastMouseY = null;
+
+const translateDragClone = (x, y) => {
+  if (!dragClone) return;
+  requestAnimationFrame(() => {
+    if (!timestamp) {
+      timestamp = Date.now();
+      lastMouseX = x;
+      lastMouseY = y;
+      return;
+    }
+
+    const now = Date.now();
+    const dt = Math.max(now - timestamp, 1);
+    const dx = x - lastMouseX;
+    const dy = y - lastMouseY;
+    const speedX = Math.min(Math.max(dx / dt, -50), 50);
+    const speedY = Math.min(Math.max(dy / dt, -50), 50);
+
+    const skewAmount = 10;
+    let skewDirection = 0;
+    if ((speedX > 0 && speedY < 0) || (speedX < 0 && speedY > 0)) skewDirection = -1;
+    else if ((speedX < 0 && speedY < 0) || (speedX > 0 && speedY > 0)) skewDirection = 1;
+
+    dragClone.style.transform = `translateX(${x}px) translateY(${y}px) 
+    skew(${skewAmount * skewDirection}deg)
+    `;
+
+    timestamp = now;
+    lastMouseX = x;
+    lastMouseY = y;
+  });
+};
+
+containers.forEach(container => {
+  const cards = container.querySelectorAll("app-card");
+
+  cards.forEach(card => {
+    card.ondragenter = e => {};
+    card.ondragstart = e => {
+      dragClone = card.cloneNode(true);
+      initDragClone(e.x, e.y);
+      container.appendChild(dragClone);
+      card.classList.add("dragging");
+    };
+    card.ondragend = e => {
+      card.classList.remove("dragging");
+      container.removeChild(dragClone);
+      dnd();
+    };
+
+    card.ondrag = e => {
+      translateDragClone(e.clientX, e.clientY);
+    };
+  });
+
+  container.ondragenter = e => {
+    const card = document.querySelector(".dragging");
+    container.appendChild(card);
+
+    // dnd();
+  };
+
+  container.ondragover = e => {
+    e.preventDefault();
+  };
+});

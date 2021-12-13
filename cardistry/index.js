@@ -64,52 +64,55 @@ const cardistry = async ({ target, states, loop, relative }) => {
 
       totalDurations[i] = delay + duration;
 
-      cards[i].style.zIndex = zIndex;
+      requestAnimationFrame(() => {
+        cards[i].style.zIndex = zIndex;
+        cards[i].style.transitionDuration = `${duration}ms`;
+        cards[i].style.transitionDelay = `${delay}ms`;
+        cards[i].style.transitionTimingFunction = timing;
+        cards[i].style.transformOrigin = transformOrigin;
+        cards[i].style.transform = `translateX(${translateX}px)
+                                    translateY(${translateY}px)
+                                    rotateX(${rotateX}deg)
+                                    rotateY(${rotateY}deg)
+                                    rotateZ(${rotateZ}deg)
+                                    scale(${scale})`;
+        cardContents[i].style.transitionDuration = `${duration}ms`;
+        cardContents[i].style.transitionDelay = `${delay}ms`;
+        cardContents[i].style.transform = `rotateY(${contentRotateY}deg)
+                                           rotateZ(${contentRotateZ}deg)`;
+      });
 
-      cards[i].style.transitionDuration = `${duration}ms`;
-      cards[i].style.transitionDelay = `${delay}ms`;
-      cards[i].style.transitionTimingFunction = timing;
+      cards[i].onmouseover = () =>
+        requestAnimationFrame(() => {
+          cardContents[i].style.transform = `translateX(${hover?.translateX ?? 0}px) 
+      translateY(${hover?.translateY ?? 0}px)
+      rotateY(${hover?.rotateY}deg) 
+      rotateZ(${contentRotateZ}deg) 
+      scale(${hover?.scale ?? 1})`;
+        });
 
-      cards[i].style.transformOrigin = transformOrigin;
-      cards[i].style.transform = `translateX(${translateX}px) 
-                                  translateY(${translateY}px) 
-                                  rotateX(${rotateX}deg) 
-                                  rotateY(${rotateY}deg) 
-                                  rotateZ(${rotateZ}deg) 
-                                  scale(${scale})`;
+      cards[i].onmouseleave = () =>
+        requestAnimationFrame(() => {
+          cardContents[i].style.transform = `rotateY(${contentRotateY}deg) 
+          rotateZ(${contentRotateZ}deg) 
+          scale(${scale})`;
+        });
 
-      cardContents[i].style.transitionDuration = `${duration}ms`;
-      cardContents[i].style.transitionDelay = `${delay}ms`;
-      cardContents[i].style.transform = `rotateY(${contentRotateY}deg) 
-                                         rotateZ(${contentRotateZ}deg)`;
+      cards[i].onfocus = () =>
+        requestAnimationFrame(() => {
+          cardContents[i].style.transform = `translateX(${focus?.translateX ?? 0}px) 
+        translateY(${focus?.translateY ?? 0}px)
+        rotateY(${focus?.rotateY}deg) 
+        rotateZ(${contentRotateZ}deg) 
+        scale(${focus?.scale ?? 1})`;
+        });
 
-      cards[i].onmouseover = () => {
-        cardContents[i].style.transform = `translateX(${hover?.translateX ?? 0}px) 
-                                           translateY(${hover?.translateY ?? 0}px)
-                                           rotateY(${hover?.rotateY}deg) 
-                                           rotateZ(${contentRotateZ}deg) 
-                                           scale(${hover?.scale ?? 1})`;
-      };
-
-      cards[i].onmouseleave = () => {
-        cardContents[i].style.transform = `rotateY(${contentRotateY}deg) 
-                                           rotateZ(${contentRotateZ}deg) 
-                                           scale(${scale})`;
-      };
-
-      cards[i].onfocus = () => {
-        cardContents[i].style.transform = `translateX(${focus?.translateX ?? 0}px) 
-                                           translateY(${focus?.translateY ?? 0}px)
-                                           rotateY(${focus?.rotateY}deg) 
-                                           rotateZ(${contentRotateZ}deg) 
-                                           scale(${focus?.scale ?? 1})`;
-      };
-
-      cards[i].onblur = () => {
-        cardContents[i].style.transform = `rotateY(${contentRotateY}deg) 
-                                           rotateZ(${contentRotateZ}deg) 
-                                           scale(${scale})`;
-      };
+      cards[i].onblur = () =>
+        requestAnimationFrame(() => {
+          cardContents[i].style.transform = `rotateY(${contentRotateY}deg) 
+        rotateZ(${contentRotateZ}deg) 
+        scale(${scale})`;
+        });
     }
 
     return new Promise((resolve, reject) => setTimeout(resolve, Math.max(...totalDurations)));

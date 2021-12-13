@@ -51,8 +51,12 @@
   height: 100%;
 }
 
-.playing-card {
+.playing-card.red {
   color: var(--clr-primary);
+}
+
+.playing-card.black {
+  color: black;
 }
 
 .playing-card .front {
@@ -72,7 +76,7 @@
   font-size: 1.3rem;
 }
 
-.playing-card .center-rank {
+.playing-card .center-suit {
   margin: auto;
   font-size: 4rem;
 }
@@ -96,4 +100,22 @@ app-deck,
 .deck {
   position: relative;
   height: 100%;
+}
+
+.dragging .content {
+  /* opacity: 0.7; */
+  visibility: hidden;
+}
+
+.dragging .back {
+  display: none;
+}
+
+.drag-clone {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  transition: transform 100ms ease;
+  pointer-events: none;
 }

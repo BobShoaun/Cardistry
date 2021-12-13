@@ -1,0 +1,39 @@
+.container {
+  padding-left: none;
+}
+
+.docs {
+  display: flex;
+  gap: 3rem;
+  padding: 3em;
+}
+
+.docs-nav {
+  overflow-y: auto;
+}
+
+.docs-nav ol > * {
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+.docs-nav ol {
+  padding-inline: 1.5em;
+}
+
+.docs-nav li {
+  font-size: 0.9rem;
+}
+
+.docs-content {
+  /* flex-basis: 80%; */
+  flex-grow: 1;
+}
+code {
+  background: rgb(85, 85, 85);
+  color: white;
+  font-family: monospace;
+  padding: 1em 2em;
+  display: block;
+  user-select: all;
+}

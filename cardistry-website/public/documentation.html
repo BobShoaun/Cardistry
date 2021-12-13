@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cardistry - Documentation</title>
+
+    <!-- only for development, refreshes browser on file change -->
+    <script defer type="text/javascript" src="https://livejs.com/live.js"></script>
+
+    <script defer src="components/deck.js"></script>
+    <script defer src="components/example.js"></script>
+    <script defer src="components/navbar.js"></script>
+    <script defer src="components/footer.js"></script>
+    <script defer src="js/examples.min.js"></script>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/card.css" />
+    <link rel="stylesheet" href="css/margins.css" />
+    <link rel="stylesheet" href="css/text-color.css" />
+    <link rel="stylesheet" href="documentation.css" />
+  </head>
+  <body>
+    <app-navbar></app-navbar>
+
+    <main class="docs">
+      <aside class="docs-nav">
+        <!-- <details>
+          <summary>Details</summary>
+          Something small enough to escape casual notice.
+        </details> -->
+        <h3 class="mb-4">Getting Started</h3>
+        <ol class="mb-5 text-gray-700">
+          <li>Installation</li>
+          <li>Basic Usage</li>
+        </ol>
+        <h3 class="mb-4">Core Concepts</h3>
+        <ol class="mb-5">
+          <li>Setup Cards</li>
+          <li>State Machine</li>
+          <li>Define States</li>
+          <li>Static Props</li>
+          <li>Functional Props</li>
+        </ol>
+        <h3 class="mb-4">State Properties</h3>
+        <ol class="mb-5">
+          <li>translate</li>
+          <li>rotate</li>
+          <li>scale</li>
+          <li>origin</li>
+          <li>zIndex</li>
+          <li>duration</li>
+          <li>delay</li>
+        </ol>
+        <h3 class="mb-4">State Presets</h3>
+        <ol class="mb-5">
+          <li>stack</li>
+          <li>spread</li>
+          <li>splash</li>
+          <li>disperse</li>
+          <li>zIndex</li>
+        </ol>
+        <h3 class="mb-4">Customization</h3>
+      </aside>
+      <section class="docs-content">
+        <h1 class="mb-3">Getting started with Cardistry</h1>
+        <hr class="mb-5">
+        <h3 class="mb-1">Installation</h2>
+        <p class="mb-5">There are several ways to install this library into your project.</p>
+        <p class="mb-2">Using NPM:</p>
+        <code class="mb-5"> npm install cardistry </code>
+        <p class="mb-2">Using Yarn:</p>
+        <code class="mb-5"> yarn add cardistry </code>
+        <p class="mb-2">Using a CDN (Add this to the head of your HTML document)</p>
+        <code class="mb-1">
+          &lt;script defer src="unpkg.com/cardistry@3.0.0/:file"&gt;&lt;/script&gt;
+        </code>
+        <code class="mb-5">
+          &lt;script defer src="https://cdn.jsdelivr.net/npm/cardistry@3.0.0"&gt;&lt;/script&gt;
+        </code>
+
+        <h3 class="mb-2">Basic Usage</h2>
+        <p class="mb-5">Setup a simple example to get you up and running.</p>
+
+
+      </section>
+    </main>
+
+    <app-footer></app-footer>
+  </body>
+</html>
