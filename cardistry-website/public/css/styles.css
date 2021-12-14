@@ -14,12 +14,6 @@
   --clr-secondary: rgb(0, 82, 0);
 }
 
-.container {
-  max-width: 1000px;
-  margin: 0 auto 2em auto;
-  padding: 2em;
-}
-
 .hero {
   background: var(--clr-secondary);
   /* padding: 10em; */

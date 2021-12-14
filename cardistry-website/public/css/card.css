@@ -118,4 +118,5 @@ app-deck,
   top: 0;
   transition: transform 100ms ease;
   pointer-events: none;
+  transform: none;
 }

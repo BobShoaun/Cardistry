@@ -234,8 +234,8 @@ cardistry({
   ],
 });
 
-setupCards(".example.drag-n-drop-1", 5, true);
-setupCards(".example.drag-n-drop-2", 5, true);
+setupCards(".example.drag-n-drop-1", 2, true);
+setupCards(".example.drag-n-drop-2", 2, true);
 
 // WIP: drag and drop
 function dnd() {
@@ -266,15 +266,9 @@ const containers = document.querySelectorAll(".drag-container");
 let dragClone = null;
 
 const initDragClone = (x, y) => {
-  // dragClone.style.position = "fixed";
-  // dragClone.style.zIndex = 999;
-  // dragClone.style.left = 0;
-  // dragClone.style.top = 0;
-  // dragClone.style.transitionDuration = 500;
-  // dragClone.style.transition = ""
-  // dragClone.style.pointerEvents = "none";
-  dragClone.classList.add("drag-clone");
+  // dragClone.style = null;
   dragClone.style.transform = `translateX(${x}px) translateY(${y}px)`;
+  dragClone.classList.add("drag-clone");
 };
 
 let timestamp = null;
@@ -314,7 +308,7 @@ const translateDragClone = (x, y) => {
 };
 
 containers.forEach(container => {
-  const cards = container.querySelectorAll("app-card");
+  const cards = container.querySelectorAll(".card");
 
   cards.forEach(card => {
     card.ondragenter = e => {};
@@ -327,7 +321,7 @@ containers.forEach(container => {
     card.ondragend = e => {
       card.classList.remove("dragging");
       container.removeChild(dragClone);
-      dnd();
+      // dnd();
     };
 
     card.ondrag = e => {
@@ -336,13 +330,49 @@ containers.forEach(container => {
   });
 
   container.ondragenter = e => {
-    const card = document.querySelector(".dragging");
-    container.appendChild(card);
-
-    // dnd();
+    const dragging = document.querySelector(".dragging");
+    container.appendChild(dragging);
+    dnd();
   };
 
   container.ondragover = e => {
     e.preventDefault();
+    return;
+
+    const getOffset = child => {
+      // child.querySelector(".card");
+      const box = child.getBoundingClientRect();
+      // console.log(box);
+      const x = e.clientX - box.right + box.width / 2;
+      const y = e.clientY - box.top - box.height;
+      return { x, y };
+    };
+
+    const children = container.querySelectorAll(":scope > .card:not(.drag-clone, .dragging)");
+    // console.log(children);
+
+    let before = null;
+    let after = null;
+
+    // find closest child before and after dragging position
+    for (const child of children) {
+      const { x, y } = getOffset(child);
+      // console.log(x);
+      const closestBefore = before
+        ? getOffset(before)
+        : { x: Number.NEGATIVE_INFINITY, y: Number.NEGATIVE_INFINITY };
+      const closestAfter = after
+        ? getOffset(after)
+        : { x: Number.POSITIVE_INFINITY, y: Number.POSITIVE_INFINITY };
+
+      // if (y > 0 || y < closestBefore.y) continue;
+      if (x < 0 && x > closestBefore.x) before = child;
+      if (x > 0 && x < closestAfter.x) after = child;
+    }
+
+    const dragging = document.querySelector(".dragging");
+    if (before) before.before(dragging);
+    if (after) after.after(dragging);
+    // dnd();
   };
 });

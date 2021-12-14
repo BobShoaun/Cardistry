@@ -11,7 +11,29 @@ export const setupCards = (target, numCards = 16, draggable = false) => {
 
   for (let i = 0; i < numCards; i++) {
     const rank = ranks[i % ranks.length];
-    cards += `<app-card rank=${rank} suit="♥" draggable=${draggable}></app-card>`;
+    const suit = "♥";
+    const color = suit === "♥" || suit === "♦" ? "red" : "black";
+
+    cards += /*html*/ `
+      <div class="card playing-card ${color}" draggable="${draggable}">
+        <div class="content">
+          <div class="front">
+            <div class="top-left">
+              <p class="rank">${rank}</p>
+              <p class="suit">${suit}</p>
+            </div>
+            <div class="bottom-right">
+              <p class="rank">${rank}</p>
+              <p class="suit">${suit}</p>
+            </div>
+            <p class="center-suit">${suit}</p>
+          </div>
+          <div class="back" draggable="false">
+            <img src="images/card-back.png" alt="" />
+          </div>
+        </div>
+      </div>
+    `;
     // const newCard = card.cloneNode(true);
     // const newCard = document.createElement("app-card").cloneNode();
     // newCard.setAttribute("rank", ranks[i % ranks.length]);
