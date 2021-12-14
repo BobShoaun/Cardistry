@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cardistry | A versatile card animation engine</title>
+    <title>♠ Cardistry | An elegant & versatile card animation engine</title>
 
     <!-- only for development, refreshes browser on file change -->
     <script defer type="text/javascript" src="https://livejs.com/live.js"></script>
 
-    <script defer src="components/deck.js"></script>
     <script defer src="components/navbar.js"></script>
     <script defer src="components/footer.js"></script>
+    <script defer src="components/example.js"></script>
 
     <script defer src="js/script.min.js"></script>
 
@@ -25,43 +25,46 @@
     <main class="container mx-auto p-4">
       <div class="text-center py-20">
         <h2 class="text-3xl font-semibold mb-6">An elegant & versatile card animation engine</h2>
-        <a
-          href="examples.html"
-          class="
-            font-bold
-            bg-red-600
-            hover:bg-red-500
-            transition-colors
-            text-neutral-100
-            rounded-md
-            px-4
-            py-2
-            shadow-md
-            inline-block
-          "
-          >Get Started</a
-        >
-        <button
-          class="
-            ml-4
-            bg-neutral-300
-            hover:bg-neutral-200
-            transition-colors
-            px-4
-            py-2
-            shadow-md
-            rounded-md
-            text-neutral-700
-            font-bold
-          "
-        >
-          Source
-        </button>
+        <div class="mb-14">
+          <a
+            href="examples.html"
+            class="
+              font-bold
+              bg-red-600
+              hover:bg-red-500
+              transition-colors
+              text-neutral-100
+              rounded-md
+              px-4
+              py-2
+              shadow-md
+              inline-block
+            "
+            >Get Started</a
+          >
+          <button
+            class="
+              ml-4
+              bg-neutral-300
+              hover:bg-neutral-200
+              transition-colors
+              px-4
+              py-2
+              shadow-md
+              rounded-md
+              text-neutral-700
+              font-bold
+            "
+          >
+            Source
+          </button>
+        </div>
+
+        <code class="bg-neutral-600 w-96 py-2 block mx-auto text-white text-sm select-all mb-3">npm i cardistry</code>
+        <code class="bg-neutral-600 w-96 py-2 block mx-auto text-white text-sm select-all">yarn add cardistry</code>
       </div>
 
-      <section class="poker-table h-30 mb-20">
-        <app-deck type="deck example main"></app-deck>
-      </section>
+      <app-example title="" subtitle="" height="30" type="deck example main"></app-example>
     </main>
 
     <app-footer></app-footer>

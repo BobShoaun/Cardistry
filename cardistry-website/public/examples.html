@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cardistry - Examples</title>
+    <title>♠ Cardistry | Examples</title>
 
     <!-- only for development, refreshes browser on file change -->
     <script defer type="text/javascript" src="https://livejs.com/live.js"></script>
 
     <script defer src="components/card.js"></script>
-    <script defer src="components/deck.js"></script>
     <script defer src="components/example.js"></script>
     <script defer src="components/navbar.js"></script>
     <script defer src="components/footer.js"></script>
@@ -23,14 +22,10 @@
   <body>
     <app-navbar></app-navbar>
 
-    <main class="container">
-      <h2 class="mb-5 text-center">Some examples of what this library can do.</h2>
+    <main class="container mx-auto px-4 py-10">
+      <h2 class="mb-5 text-xl font-semibold">Some examples of what this library can do.</h2>
 
-      <app-example
-        title="Move"
-        subtitle="Animation of a card moving"
-        type="deck example move"
-      ></app-example>
+      <app-example title="Move" subtitle="Animation of a card moving" type="deck example move"></app-example>
 
       <app-example
         title="Spread"
@@ -38,29 +33,13 @@
         type="deck example spread"
       ></app-example>
 
-      <app-example
-        title="Flip"
-        subtitle="Flipping each card in sequence"
-        type="deck example flip"
-      ></app-example>
+      <app-example title="Flip" subtitle="Flipping each card in sequence" type="deck example flip"></app-example>
 
-      <app-example
-        title="Fan"
-        subtitle="Fanning the cards in sequence"
-        type="deck example fan"
-      ></app-example>
+      <app-example title="Fan" subtitle="Fanning the cards in sequence" type="deck example fan"></app-example>
 
-      <app-example
-        title="Twist"
-        subtitle="Rotating the cards in sequence"
-        type="deck example rotate"
-      ></app-example>
+      <app-example title="Twist" subtitle="Rotating the cards in sequence" type="deck example rotate"></app-example>
 
-      <app-example
-        title="Hover & Flip"
-        subtitle="Hover to flip each card"
-        type="deck example hover-flip"
-      ></app-example>
+      <app-example title="Hover & Flip" subtitle="Hover to flip each card" type="deck example hover-flip"></app-example>
       <!-- 
       <app-example
         title="Distribute"

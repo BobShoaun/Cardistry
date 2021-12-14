@@ -2,7 +2,7 @@ class Footer extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = /*html*/ `
-      <footer class="-footer text-center bg-neutral-100 border-t-[1px] p-10 border-neutral-500">
+      <footer class="text-center bg-neutral-100 border-t-[1px] p-10 border-neutral-500">
         <p class="mb-7 text-sm text-neutral-700">
         Found a bug? Contribute by fixing it on GitHub
         </p>
