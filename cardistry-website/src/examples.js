@@ -1,13 +1,5 @@
 import cardistry from "cardistry";
-import {
-  stack,
-  fan,
-  spreadRight,
-  flip,
-  spreadLeft,
-  disperse,
-  spreadCenter,
-} from "cardistry/presets";
+import { stack, fan, spreadRight, flip, spreadLeft, disperse, spreadCenter } from "cardistry/presets";
 import { setupCards } from "./helpers";
 
 setupCards(".example.move", 1);
@@ -358,12 +350,8 @@ containers.forEach(container => {
     for (const child of children) {
       const { x, y } = getOffset(child);
       // console.log(x);
-      const closestBefore = before
-        ? getOffset(before)
-        : { x: Number.NEGATIVE_INFINITY, y: Number.NEGATIVE_INFINITY };
-      const closestAfter = after
-        ? getOffset(after)
-        : { x: Number.POSITIVE_INFINITY, y: Number.POSITIVE_INFINITY };
+      const closestBefore = before ? getOffset(before) : { x: Number.NEGATIVE_INFINITY, y: Number.NEGATIVE_INFINITY };
+      const closestAfter = after ? getOffset(after) : { x: Number.POSITIVE_INFINITY, y: Number.POSITIVE_INFINITY };
 
       // if (y > 0 || y < closestBefore.y) continue;
       if (x < 0 && x > closestBefore.x) before = child;

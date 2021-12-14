@@ -8,7 +8,7 @@ class Card extends HTMLElement {
     const draggable = this.getAttribute("draggable") || false;
 
     this.innerHTML = /*html*/ `
-      <div class="card playing-card ${color}" draggable="${draggable}">
+      <div class="card poker-card ${color}" draggable="${draggable}">
         <div class="content">
           <div class="front">
             <div class="top-left">

@@ -1,4 +1,4 @@
-.card {
+.poker-card {
   cursor: pointer;
 
   transition-property: transform, z-index;
@@ -17,7 +17,7 @@
   margin-top: calc(-1 * var(--card-height) / 2);
 }
 
-.card .content {
+.poker-card .content {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
@@ -29,8 +29,8 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-.card .front,
-.card .back {
+.poker-card .front,
+.poker-card .back {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
@@ -38,57 +38,62 @@
   z-index: 1;
 }
 
-.card .front {
+.poker-card .front {
 }
 
-.card .back {
+.poker-card .back {
   transform: rotateY(180deg);
 }
 
-.card .back img {
+.poker-card .back img {
   object-fit: scale-down;
   width: 100%;
   height: 100%;
 }
 
-.playing-card.red {
+.poker-card.red {
   color: var(--clr-primary);
 }
 
-.playing-card.black {
+.poker-card.black {
   color: black;
 }
 
-.playing-card .front {
+.poker-card .front {
   background: white;
   padding: 5px;
 }
 
-.playing-card .back {
+.poker-card .back {
   background: lightcoral;
 }
 
-.playing-card .front {
+.poker-card .front {
   display: flex;
 }
 
-.playing-card .suit {
-  font-size: 1.3rem;
+.poker-card .rank {
+  line-height: 1.3rem;
 }
 
-.playing-card .center-suit {
+.poker-card .suit {
+  font-size: 1.3rem;
+  line-height: 1.3rem;
+}
+
+.poker-card .center-suit {
   margin: auto;
   font-size: 4rem;
 }
 
-.playing-card .top-left {
+.poker-card .top-left {
   text-align: center;
   position: absolute;
   top: 5px;
   left: 5px;
 }
 
-.playing-card .bottom-right {
+.poker-card .bottom-right {
   transform: rotate(180deg);
   text-align: center;
   position: absolute;

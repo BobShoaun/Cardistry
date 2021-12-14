@@ -4,11 +4,10 @@
   "description": "example website for the cardistry library",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "concurrently --kill-others \"nodemon server.js\" \"webpack -w --mode development\"",
+    "dev": "concurrently --kill-others \"webpack -w --mode development\" \"npm run dev:tailwind\" \"nodemon server.js\"",
     "build": "webpack --mode production",
-    "build:tailwind": "npx tailwindcss -i ./src/tailwind.css -o ./public/css/tailwind.css --watch"
+    "dev:tailwind": "npx tailwindcss -i ./src/tailwind.css -o ./public/css/tailwind.css --watch"
   },
   "author": "Bob Shoaun Ng",
   "license": "ISC",

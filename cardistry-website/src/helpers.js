@@ -15,7 +15,7 @@ export const setupCards = (target, numCards = 16, draggable = false) => {
     const color = suit === "♥" || suit === "♦" ? "red" : "black";
 
     cards += /*html*/ `
-      <div class="card playing-card ${color}" draggable="${draggable}">
+      <div class="card poker-card ${color}" draggable="${draggable}">
         <div class="content">
           <div class="front">
             <div class="top-left">
