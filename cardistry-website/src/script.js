@@ -1,4 +1,4 @@
-import cardistry from "../../cardistry/test";
+import cardistry from "../../cardistry";
 import { stack, fan, spreadRight, flip, spreadLeft, disperse, spreadCenter } from "cardistry/presets";
 
 import { setupCards } from "./helpers";

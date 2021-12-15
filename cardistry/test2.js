@@ -9,7 +9,7 @@ const ease = time => {
 class Cardistry {
   #speed;
 
-  constructor({ target, states, loop = true, relative, autoplay = true }) {
+  constructor({ target, states, loop = true, relative, autoplay = true, pauseWhenNotInView = true }) {
     this.isPlaying = false;
     this.target = target;
     this.states = states;
@@ -17,6 +17,7 @@ class Cardistry {
     this.relative = relative;
     this.autoplay = autoplay;
     this.#speed = 1;
+    this.status = "stopped"; // playing, paused, stopped
     this.initialize();
     if (autoplay) this.play();
   }
@@ -43,19 +44,19 @@ class Cardistry {
 
   // https://javascript.info/js-animation
   async #animate({ timing, draw, duration, delay }) {
-    await new Promise((resolve, reject) => setTimeout(resolve, delay / this.#speed));
+    await new Promise(resolve => setTimeout(resolve, delay / this.#speed));
     const start = performance.now();
     return new Promise((resolve, reject) => {
-      const anim = time => {
+      const frame = time => {
         if (!this.isPlaying) return;
         // timeFraction goes from 0 to 1
         const normalizedTime = Math.min(((time - start) / duration) * this.#speed, 1);
         const progress = timing(normalizedTime);
         draw(progress);
         if (normalizedTime >= 1) return resolve();
-        requestAnimationFrame(anim);
+        requestAnimationFrame(frame);
       };
-      requestAnimationFrame(anim);
+      requestAnimationFrame(frame);
     });
   }
 
