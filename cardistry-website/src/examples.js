@@ -1,4 +1,5 @@
-import cardistry from "cardistry";
+import cardistry from "../../cardistry";
+import cardistry2 from "../../cardistry/test";
 import { stack, fan, spreadRight, flip, spreadLeft, disperse, spreadCenter } from "cardistry/presets";
 import { setupCards } from "./helpers";
 
@@ -12,7 +13,11 @@ setupCards(".example.distribute");
 setupCards(".example.wave", 30);
 setupCards(".example.waterfall", 40);
 
-cardistry({
+requestAnimationFrame(() => {
+  console.log("frame");
+});
+
+cardistry2({
   target: ".example.move",
   loop: true,
   relative: true,
@@ -20,54 +25,79 @@ cardistry({
     {
       translateX: 250,
       translateY: -100,
-      duration: 400,
     },
     {
+      translateX: 250,
       translateY: 100,
-      duration: 400,
     },
     {
       translateX: -250,
       translateY: -100,
-      duration: 400,
     },
     {
+      translateX: -250,
       translateY: 100,
-      duration: 400,
     },
   ],
 });
 
-cardistry({
+cardistry2({
   target: ".example.spread",
   loop: true,
   states: [
     stack(),
-    { ...spreadCenter(), duration: 700 },
+    { ...spreadCenter(), duration: 700, delay: 100 },
     stack(),
-    { ...spreadLeft(), duration: 700 },
+    { ...spreadLeft(), duration: 700, delay: 100 },
     stack(),
-    { ...spreadRight(), duration: 700 },
+    { ...spreadRight(), duration: 700, delay: 100 },
   ],
 });
 
-cardistry({
+cardistry2({
   target: ".example.flip",
   loop: true,
-  relative: true,
+  // relative: true,
   states: [
-    { ...spreadCenter(), duration: 700 },
-    { ...flip(), ...spreadCenter(), duration: 500, delay: i => i * 50, zIndex: (i, n) => n - i },
-    { delay: 500 },
+    // { ...spreadCenter(), duration: 700 },
     {
       contentRotateY: 0,
       ...spreadCenter(),
-      duration: 500,
-      delay: (i, n) => (n - i) * 50,
-      zIndex: i => i,
+      duration: 2000,
+      delay: i => i * 50,
+      // zIndex: i => i,
+      delay: 2000,
+    },
+    // { delay: 500 },
+    {
+      contentRotateY: 180,
+      ...spreadCenter(),
+      duration: 2000,
+      zIndex: (i, n) => n - i,
+
+      // delay: (i, n) => (n - i) * 50,
+      // zIndex: i => i,
     },
   ],
 });
+
+// cardistry2({
+//   target: ".example.flip",
+//   loop: true,
+//   relative: true,
+//   states: [
+//     { ...spreadCenter(), duration: 700 },
+//     { ...flip(), ...spreadCenter(), duration: 500, delay: i => i * 50, zIndex: (i, n) => n - i },
+//     { delay: 500 },
+//     {
+//       contentRotateY: 0,
+//       ...spreadCenter(),
+//       duration: 500,
+//       delay: (i, n) => (n - i) * 50,
+//       zIndex: i => i,
+//     },
+//   ],
+// });
 
 cardistry({
   target: ".example.fan",
