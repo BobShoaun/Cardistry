@@ -1,5 +1,6 @@
 import cardistry from "../../cardistry";
 import cardistry2 from "../../cardistry/test";
+import Cardistry from "../../cardistry/test2";
 import { stack, fan, spreadRight, flip, spreadLeft, disperse, spreadCenter } from "cardistry/presets";
 import { setupCards } from "./helpers";
 
@@ -13,11 +14,7 @@ setupCards(".example.distribute");
 setupCards(".example.wave", 30);
 setupCards(".example.waterfall", 40);
 
-requestAnimationFrame(() => {
-  console.log("frame");
-});
-
-cardistry2({
+const instance = new Cardistry({
   target: ".example.move",
   loop: true,
   relative: true,
@@ -41,16 +38,31 @@ cardistry2({
   ],
 });
 
-cardistry2({
+document.getElementById("play").onclick = () => {
+  instance.play();
+  instance2.play();
+};
+
+document.getElementById("pause").onclick = () => {
+  instance.pause();
+  instance2.pause();
+};
+
+document.getElementById("speed").onchange = e => {
+  instance.speed = parseFloat(e.target.value);
+  instance2.speed = parseFloat(e.target.value);
+};
+
+const instance2 = new Cardistry({
   target: ".example.spread",
   loop: true,
   states: [
-    stack(),
-    { ...spreadCenter(), duration: 700, delay: 100 },
-    stack(),
-    { ...spreadLeft(), duration: 700, delay: 100 },
-    stack(),
-    { ...spreadRight(), duration: 700, delay: 100 },
+    { ...stack(), delay: 500 },
+    { ...spreadCenter(), duration: 700 },
+    { ...stack(), delay: 500 },
+    { ...spreadLeft(), duration: 700 },
+    { ...stack(), delay: 500 },
+    { ...spreadRight(), duration: 700 },
   ],
 });
 
