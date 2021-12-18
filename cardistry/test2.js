@@ -57,10 +57,20 @@ class Cardistry {
     if (autoplay) this.play();
   }
 
+  isInViewport() {
+    const rect = this.parent.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
   initialize() {
-    const hand = document.querySelector(this.target);
-    if (!hand) return;
-    this.cards = hand.querySelectorAll(".card");
+    this.parent = document.querySelector(this.target);
+    if (!this.parent) return;
+    this.cards = this.parent.querySelectorAll(".card");
     this.cardContents = [...this.cards].map(card => card.querySelector(".content"));
     const {
       translateX = 0,
@@ -108,7 +118,11 @@ class Cardistry {
       let prevTime = performance.now();
       let totalTime = 0;
       const frame = time => {
+        if (!this.isInViewport()) {
+          this.status = "paused";
+        } else this.status = "playing";
         if (this.status === "stopped") return resolve();
+
         const deltaTime = time - prevTime;
         totalTime += deltaTime * (this.status === "paused" ? 0 : this.#speed);
         prevTime = time;

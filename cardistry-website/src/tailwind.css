@@ -5,3 +5,46 @@
 *::selection {
   @apply bg-gray-200 text-gray-800;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.documentation h1 {
+  @apply text-xl font-bold mb-4 mt-14 scroll-m-6;
+}
+
+.documentation h2 {
+  @apply text-lg font-bold mb-2 mt-5 scroll-m-5;
+}
+
+.documentation h3 {
+  @apply text-sm mb-2 mt-4 font-semibold;
+}
+
+.documentation p {
+  @apply text-sm mb-2.5;
+}
+
+.documentation p em {
+  @apply font-mono font-medium;
+}
+
+.documentation code {
+  @apply block font-mono px-5 py-4 mb-5 text-sm;
+  @apply bg-gray-800 text-white;
+}
+
+.documentation table {
+  @apply table-auto w-full mt-5 mb-7;
+}
+.documentation table th {
+  @apply text-left text-sm border-y-2 border-gray-400 p-3;
+}
+
+.documentation table td {
+  @apply text-sm text-gray-600 border-y-2 border-gray-300 p-3 font-mono;
+}
+.documentation table tbody tr td:nth-child(2) {
+  @apply font-serif;
+}

@@ -533,20 +533,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 1.25rem;
 }
 
-.mb-3 {
-  margin-bottom: 0.75rem;
-}
-
-.mb-1 {
-  margin-bottom: 0.25rem;
-}
-
 .mt-14 {
   margin-top: 3.5rem;
 }
 
 .mb-10 {
   margin-bottom: 2.5rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
 }
 
 .mb-6 {
@@ -589,6 +589,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .h-14 {
   height: 3.5rem;
 }
@@ -619,6 +623,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   align-items: center;
 }
 
+.gap-2 {
+  gap: 0.5rem;
+}
+
 .gap-6 {
   gap: 1.5rem;
 }
@@ -635,6 +643,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .overflow-y-auto {
   overflow-y: auto;
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
 }
 
 .rounded-md {
@@ -654,6 +666,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(115 115 115 / var(--tw-border-opacity));
 }
 
+.bg-table {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 82 0 / var(--tw-bg-opacity));
+}
+
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
@@ -667,11 +684,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-neutral-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(82 82 82 / var(--tw-bg-opacity));
-}
-
-.bg-table {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 82 0 / var(--tw-bg-opacity));
 }
 
 .bg-neutral-100 {
@@ -702,14 +714,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 2.5rem;
 }
 
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 .py-2 {
@@ -729,6 +741,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pl-4 {
   padding-left: 1rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
 }
 
 .pt-16 {
@@ -809,16 +825,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-underline-offset: 2px;
 }
 
+.shadow-inner {
+  --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-inner {
-  --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
-  --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+.transition {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 .transition-colors {
@@ -829,14 +853,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.ease-out {
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-}
-
-.ease-in {
-  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 
 *::-moz-selection {
@@ -851,6 +867,98 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.documentation h1 {
+  margin-bottom: 1rem;
+  margin-top: 3.5rem;
+  scroll-margin: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
+.documentation h2 {
+  margin-bottom: 0.5rem;
+  margin-top: 1.25rem;
+  scroll-margin: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
+.documentation h3 {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+}
+
+.documentation p {
+  margin-bottom: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.documentation p em {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 500;
+}
+
+.documentation code {
+  margin-bottom: 1.25rem;
+  display: block;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.documentation table {
+  margin-top: 1.25rem;
+  margin-bottom: 1.75rem;
+  width: 100%;
+  table-layout: auto;
+}
+
+.documentation table th {
+  border-top-width: 2px;
+  border-bottom-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+  padding: 0.75rem;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.documentation table td {
+  border-top-width: 2px;
+  border-bottom-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+  padding: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.documentation table tbody tr td:nth-child(2) {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .hover\:bg-red-500:hover {
