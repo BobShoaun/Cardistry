@@ -1,5 +1,4 @@
 import cardistry from "../../cardistry";
-import cardistry2 from "../../cardistry/test";
 import Cardistry from "../../cardistry/test2";
 import { stack, fan, spreadRight, flip, spreadLeft, disperse, spreadCenter } from "cardistry/presets";
 import { setupCards } from "./helpers";
@@ -18,13 +17,13 @@ const instance = new Cardistry({
   target: ".example.move",
   loop: true,
   relative: true,
+  timing: "quad",
   states: [
     {
       translateX: 250,
       translateY: -100,
     },
     {
-      translateX: 250,
       translateY: 100,
     },
     {
@@ -32,20 +31,21 @@ const instance = new Cardistry({
       translateY: -100,
     },
     {
-      translateX: -250,
       translateY: 100,
     },
   ],
 });
 
 document.getElementById("play").onclick = () => {
+  // instance.play();
+  // instance.isPlaying = true;
+  // instance.speed = 1;
   instance.play();
-  instance2.play();
 };
 
 document.getElementById("pause").onclick = () => {
   instance.pause();
-  instance2.pause();
+  // instance2.pause();
 };
 
 document.getElementById("speed").onchange = e => {
@@ -56,6 +56,9 @@ document.getElementById("speed").onchange = e => {
 const instance2 = new Cardistry({
   target: ".example.spread",
   loop: true,
+  autoplay: true,
+  timing: "quad",
+  // relative: true,
   states: [
     { ...stack(), delay: 500 },
     { ...spreadCenter(), duration: 700 },
@@ -66,69 +69,47 @@ const instance2 = new Cardistry({
   ],
 });
 
-cardistry2({
+new Cardistry({
   target: ".example.flip",
-  loop: true,
-  // relative: true,
+  relative: true,
+  autoplay: false,
+  initialState: { ...spreadCenter(), zIndex: i => i },
   states: [
-    // { ...spreadCenter(), duration: 700 },
     {
       contentRotateY: 0,
-      ...spreadCenter(),
-      duration: 2000,
-      delay: i => i * 50,
-      // zIndex: i => i,
-      delay: 2000,
+      duration: 1000,
+      delay: (i, n) => (n - i) * 50,
+      zIndex: i => i,
     },
-    // { delay: 500 },
     {
       contentRotateY: 180,
-      ...spreadCenter(),
-      duration: 2000,
+      duration: 1000,
+      delay: i => i * 50,
       zIndex: (i, n) => n - i,
-
-      // delay: (i, n) => (n - i) * 50,
-      // zIndex: i => i,
     },
   ],
 });
 
-// cardistry2({
-//   target: ".example.flip",
-//   loop: true,
-//   relative: true,
-//   states: [
-//     { ...spreadCenter(), duration: 700 },
-//     { ...flip(), ...spreadCenter(), duration: 500, delay: i => i * 50, zIndex: (i, n) => n - i },
-//     { delay: 500 },
-//     {
-//       contentRotateY: 0,
-//       ...spreadCenter(),
-//       duration: 500,
-//       delay: (i, n) => (n - i) * 50,
-//       zIndex: i => i,
-//     },
-//   ],
-// });
-
-cardistry({
+new Cardistry({
   target: ".example.fan",
   loop: true,
+  relative: true,
+  autoplay: false,
   states: [
     stack(),
     {
-      transformOrigin: "50% 200%",
+      originY: 2,
       rotateZ: (_, n) => (0.5 - n / 2) * 6,
       delay: 500,
       duration: 500,
     },
     {
-      transformOrigin: "50% 200%",
+      // originY: 2,
       rotateZ: (i, n) => (i + 0.5 - n / 2) * 6,
       duration: 500,
     },
     {
-      transformOrigin: "50% 200%",
+      // originY: 2,
       rotateZ: 0,
       duration: 500,
       delay: 700,
@@ -136,9 +117,10 @@ cardistry({
   ],
 });
 
-cardistry({
+new Cardistry({
   target: ".example.rotate",
   loop: true,
+  autoplay: false,
   states: [
     {
       ...stack(),
@@ -149,6 +131,7 @@ cardistry({
       ...spreadCenter(400, 40),
       rotateZ: (i, n) => -90 + i * (360 / (n - 1)),
       duration: 1000,
+      delay: 500,
     },
   ],
 });
@@ -156,6 +139,7 @@ cardistry({
 cardistry({
   target: ".example.hover-flip",
   relative: true,
+
   states: [
     stack(),
     fan(),
@@ -176,10 +160,11 @@ cardistry({
   ],
 });
 
-cardistry({
+new Cardistry({
   target: ".example.distribute",
   loop: true,
   relative: true,
+  autoplay: false,
   states: [
     {
       contentRotateY: 180,
@@ -212,8 +197,9 @@ cardistry({
   ],
 });
 
-cardistry({
+new Cardistry({
   target: ".example.wave",
+  autoplay: false,
   loop: true,
   states: [
     {
@@ -243,9 +229,10 @@ cardistry({
   ],
 });
 
-cardistry({
+new Cardistry({
   target: ".example.waterfall",
   loop: true,
+  autoplay: false,
   states: [
     {
       delay: 1000,
@@ -268,27 +255,45 @@ cardistry({
   ],
 });
 
-setupCards(".example.drag-n-drop-1", 2, true);
-setupCards(".example.drag-n-drop-2", 2, true);
+setupCards(".example.drag-n-drop-1", 5, true);
+setupCards(".example.drag-n-drop-2", 5, true);
 
 // WIP: drag and drop
-function dnd() {
-  cardistry({
-    target: ".example.drag-n-drop-1",
-    states: [spreadCenter(100, 50)],
-  });
 
-  cardistry({
-    target: ".example.drag-n-drop-2",
-    states: [spreadCenter(100, 50)],
-  });
-}
-dnd();
+const dnd1 = new Cardistry({
+  target: ".example.drag-n-drop-1",
+  autoplay: false,
+  initialState: {
+    translateX: (i, n) => (i + 0.5 - (n - 1) / 2) * 50,
+  },
+  states: [
+    {
+      translateX: (i, n) => (i + 0.5 - (n - 1) / 2) * 50,
+      duration: 100,
+    },
+    {
+      translateX: (i, n) => (i + 0.5 - n / 2) * 50,
+      duration: 500,
+    },
+  ],
+  loop: false,
+  // autoplay: false,
+});
+
+const dnd2 = new Cardistry({
+  target: ".example.drag-n-drop-2",
+  autoplay: false,
+  states: [spreadCenter(100, 50)],
+  loop: false,
+
+  // autoplay: false,
+});
 
 // const deck = document.querySelector(".example.drag-n-drop-1");
 // const cards = deck.querySelectorAll("app-card");
 
 const containers = document.querySelectorAll(".drag-container");
+const dragArea = document.querySelector(".drag-container-parent");
 
 // deck.ondragover = e => {
 //   e.preventDefault();
@@ -349,13 +354,16 @@ containers.forEach(container => {
     card.ondragstart = e => {
       dragClone = card.cloneNode(true);
       initDragClone(e.x, e.y);
-      container.appendChild(dragClone);
+      dragArea.appendChild(dragClone);
       card.classList.add("dragging");
     };
     card.ondragend = e => {
       card.classList.remove("dragging");
-      container.removeChild(dragClone);
-      // dnd();
+      dragArea.removeChild(dragClone);
+      dnd1.initialize();
+      dnd2.initialize();
+      dnd1.play();
+      dnd2.play();
     };
 
     card.ondrag = e => {
@@ -366,7 +374,7 @@ containers.forEach(container => {
   container.ondragenter = e => {
     const dragging = document.querySelector(".dragging");
     container.appendChild(dragging);
-    dnd();
+    // dnd();
   };
 
   container.ondragover = e => {
