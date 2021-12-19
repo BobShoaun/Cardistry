@@ -13,11 +13,11 @@ html {
 }
 
 .documentation h1 {
-  @apply text-xl font-bold mb-4 mt-14 scroll-m-6;
+  @apply text-2xl font-bold mb-4 mt-14 scroll-m-6;
 }
 
 .documentation h2 {
-  @apply text-lg font-bold mb-2 mt-5 scroll-m-5;
+  @apply text-lg font-bold mb-2 mt-6 scroll-m-5;
 }
 
 .documentation h3 {
