@@ -1,5 +1,5 @@
-import Cardistry from "../../cardistry";
-import { stack, spreadRight, spreadLeft, spreadCenter } from "../../cardistry/presets";
+import Cardistry from "cardistry";
+import { stack, spreadRight, spreadLeft, spreadCenter } from "cardistry/presets";
 
 import { setupCards } from "./helpers";
 

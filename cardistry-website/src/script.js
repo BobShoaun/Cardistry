@@ -1,5 +1,5 @@
-import Cardistry from "../../cardistry";
-import { fan, flip, disperse, spreadCenter } from "../../cardistry/presets";
+import Cardistry from "cardistry";
+import { fan, flip, disperse, spreadCenter } from "cardistry/presets";
 import { setupCards } from "./helpers";
 
 setupCards(".example.main");

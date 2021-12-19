@@ -330,6 +330,13 @@ instance.stop(); // stops the animation</code></pre>
             <em>Number</em>.
           </p>
         </div>
+        <div class="flex gap-2">
+          <p><em>Timing</em>:</p>
+          <p>
+            one of <em>"linear"</em>, <em>"ease"</em>, <em>"ease-in"</em>, <em>"ease-out"</em>, <em>"quad"</em>,
+            <em>"elastic"</em>, and <em>"bounce"</em>.
+          </p>
+        </div>
 
         <h2 id="api-summary/state-machine">State Machine Options</h2>
         <p>For the arguments passed into the options object when contructing a <em>new Cardistry</em> instance.</p>
@@ -353,7 +360,7 @@ instance.stop(); // stops the animation</code></pre>
               <td>initialState</td>
               <td>The first state to be assigned to the cards before the animation starts playing.</td>
               <td>Object</td>
-              <td>{ moveX: 0, moveY: 0, rotate: 0, flipX: 0, flipY: 0, scale: 1, order: () => 1 }</td>
+              <td>{ moveX: 0, moveY: 0, rotate: 0, scale: 1, originX: 0.5, originY: 0.5, order: () => 1, flipY: 0 }</td>
             </tr>
             <tr>
               <td>states</td>
@@ -382,7 +389,7 @@ instance.stop(); // stops the animation</code></pre>
             <tr>
               <td>timing</td>
               <td>The global timing function of the animation.</td>
-              <td>String | Function&lt;t&gt;</td>
+              <td>Timing | Function&lt;t&gt;</td>
               <td>"ease"</td>
             </tr>
           </tbody>
@@ -472,7 +479,7 @@ instance.stop(); // stops the animation</code></pre>
             <tr>
               <td>timing</td>
               <td>Timing function of the state.</td>
-              <td>String | Function&lt;t&gt;</td>
+              <td>Timing | Function&lt;t&gt;</td>
               <td>"ease"</td>
             </tr>
           </tbody>

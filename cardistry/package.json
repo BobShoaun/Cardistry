@@ -1,6 +1,6 @@
 {
   "name": "cardistry",
-  "version": "0.3.0-alpha.0",
+  "version": "1.0.0",
   "description": "A powerful card animation engine",
   "homepage": "https://cardistry.herokuapp.com/",
   "main": "index.js",
