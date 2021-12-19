@@ -10,8 +10,21 @@ For full documentation, visit [cardistry.herokuapp.com/documentation.html](https
 
 ### Installation
 
+#### Using NPM
+
 - Run `npm install cardistry`
+
+#### Using Yarn
+
 - Run `yarn add cardistry`
+
+#### Using CDN
+
+Add to HTML head:
+
+```html
+<script defer src="unpkg.com/cardistry@1.0.1"></script>
+```
 
 ### Basic Usage
 
