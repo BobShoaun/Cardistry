@@ -1,3 +1,4 @@
+// credits: https://javascript.info/js-animation and https://easings.net/#
 const linear = t => t;
 const quad = t => t * t;
 const easeIn = t => t * t * t;
@@ -36,13 +37,13 @@ class Cardistry {
       originY: 0.5,
       order: 1,
       flipY: 0,
+      flipX: 0,
     },
     states,
     loop = true,
     relative = false,
     autoplay = true,
     timing = ease,
-    pauseWhenNotInView = true,
   }) {
     this.target = target;
     this.initialState = initialState;
@@ -55,16 +56,6 @@ class Cardistry {
     this.timing = this.getTiming(timing);
     this.initialize();
     if (autoplay) this.play();
-  }
-
-  isInViewport() {
-    const rect = this.parent.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
   }
 
   initialize() {
@@ -81,6 +72,7 @@ class Cardistry {
       originY = 0.5,
       order = 1,
       flipY = 0,
+      flipX = 0,
     } = this.initialState;
 
     const n = this.cards.length;
@@ -93,7 +85,7 @@ class Cardistry {
         this.cards[i].style.zIndex = getValue(order);
         this.cards[i].style.transform = `translateX(${getValue(moveX)}px) translateY(${getValue(moveY)}px)
         rotateZ(${getValue(rotate)}deg) scale(${getValue(scale)})`;
-        this.cardContents[i].style.transform = `rotateY(${getValue(flipY)}deg)`;
+        this.cardContents[i].style.transform = `rotateY(${getValue(flipY)}deg) rotateX(${getValue(flipX)}deg)`;
       }
     });
   }
@@ -117,9 +109,6 @@ class Cardistry {
       let prevTime = performance.now();
       let totalTime = 0;
       const frame = time => {
-        // if (!this.isInViewport()) {
-        //   this.status = "paused";
-        // } else this.status = "playing";
         if (this.status === "stopped") return resolve();
 
         const deltaTime = time - prevTime;
@@ -191,6 +180,7 @@ class Cardistry {
           const _originY = getValueRelative("originY") ?? 0.5;
           const _order = getValueRelative("order") ?? 1;
           const _flipY = getValueRelative("flipY") ?? 0;
+          const _flipX = getValueRelative("flipX") ?? 0;
 
           const _delay = getValue("delay") ?? 0;
           const _timing = this.getTiming(state.timing) ?? this.timing;
@@ -212,7 +202,7 @@ class Cardistry {
               }deg) scale(${(_scale - _prevState.scale) * progress + _prevState.scale})`;
               this.cardContents[i].style.transform = `rotateY(${
                 (_flipY - _prevState.flipY) * progress + _prevState.flipY
-              }deg)`;
+              }deg) rotateX(${(_flipX - _prevState.flipX) * progress + _prevState.flipX}deg)`;
             },
             duration,
             delay: _delay,
@@ -226,6 +216,7 @@ class Cardistry {
           prevStateCards[i].originX = _originX;
           prevStateCards[i].originY = _originY;
           prevStateCards[i].flipY = _flipY;
+          prevStateCards[i].flipX = _flipX;
           prevStateCards[i].order = _order;
         }
 
