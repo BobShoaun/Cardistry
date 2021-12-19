@@ -1,14 +1,17 @@
-import cardistry from "../../cardistry";
-import { stack, fan, spreadRight, flip, spreadLeft, disperse, spreadCenter } from "cardistry/presets";
+// import cardistry from "../../cardistry";
+import Cardistry from "../../cardistry/test2";
+
+import { stack, fan, spreadRight, flip, spreadLeft, disperse, spreadCenter } from "../../cardistry/presets";
 
 import { setupCards } from "./helpers";
 
 setupCards(".example.main");
 
-cardistry({
+new Cardistry({
   target: ".example.main",
   loop: true,
   // relative: true,
+  // timing: "linear",
   states: [
     {
       delay: 700,
@@ -22,26 +25,33 @@ cardistry({
       ...fan(7),
     },
     {
-      delay: 700,
-      translateY: (i, n) => (i + 0.5 - n / 2) * 20,
-      translateX: (i, n) => (i + 0.5 - n / 2) * 25,
+      delay: 500,
+      rotate: 0,
+      originY: 2,
+      duration: 300,
+    },
+    {
+      delay: 100,
+      moveY: (i, n) => (i + 0.5 - n / 2) * 20,
+      moveX: (i, n) => (i + 0.5 - n / 2) * 25,
       duration: 300,
     },
     {
       delay: 200,
       duration: 400,
-      translateY: (i, n) => (i + 0.5 - n / 2) * -20,
-      translateX: (i, n) => (i + 0.5 - n / 2) * -25,
+      moveY: (i, n) => (i + 0.5 - n / 2) * -20,
+      moveX: (i, n) => (i + 0.5 - n / 2) * -25,
     },
     {
-      delay: i => i * 50,
-      translateX: (i, n) => (i + 0.5 - n / 2) * -25,
+      delay: i => i * 50 + 100,
+      moveX: (i, n) => (i + 0.5 - n / 2) * -25,
+      duration: 200,
     },
     {
       ...flip(),
-      translateX: (i, n) => (i + 0.5 - n / 2) * -25,
+      moveX: (i, n) => (i + 0.5 - n / 2) * -25,
       delay: i => i * 50,
-      zIndex: (i, n) => n - i,
+      order: (i, n) => n - i,
     },
     // {
     //   rotateZ: (i, n) => (i + 0.5 - n / 2) * -20,
@@ -50,11 +60,17 @@ cardistry({
     //   contentRotateY: 180,
     // },
     {
-      contentRotateY: 180,
-      delay: 700,
+      flipY: 180,
+      order: (i, n) => n - i,
+      delay: 400,
     },
     {
-      contentRotateY: 180,
+      delay: 100,
+      flipY: 180,
+      duration: 100,
+    },
+    {
+      flipY: 180,
       ...disperse(500),
     },
   ],

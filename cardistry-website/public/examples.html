@@ -13,7 +13,8 @@
     <script defer src="components/example.js"></script>
     <script defer src="components/navbar.js"></script>
     <script defer src="components/footer.js"></script>
-    <script defer src="js/examples.min.js"></script>
+    <!-- <script defer src="js/examples.min.js"></script> -->
+    <script defer src="js/move-example.min.js"></script>
 
     <link rel="stylesheet" href="css/tailwind.css" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -28,45 +29,30 @@
     <app-navbar></app-navbar>
 
     <main class="container mx-auto px-4 py-10 mt-14">
-      <h2 class="mb-5 text-xl font-semibold">Some examples of what this library can do.</h2>
-
-      <app-example title="Move" subtitle="Animation of a card moving" type="deck example move"></app-example>
-
-      <div class="mb-10">
-        <button id="play">Play</button>
-        <button id="pause">Pause</button>
-        <input type="number" id="speed" value="1" step="0.5" />
+      <div class="mb-8 flex items-center justify-between">
+        <button id="previous" class="bg-gray-300 px-3 py-1 rounded-sm">Previous</button>
+        <p>Some examples of what this library can do.</p>
+        <button id="next" class="bg-gray-300 px-3 py-1 rounded-sm">Next</button>
       </div>
 
-      <!-- <app-example
-        title="Spread"
-        subtitle="Animation of spreading a deck of cards"
-        type="deck example spread"
-      ></app-example>
+      <h3 id="title" class="mb-0 font-bold text-lg"></h3>
+      <p id="description" class="mb-2 text-sm"></p>
+      <section id="table" class="bg-table mb-5 shadow-inner overflow-hidden" style="height: 30rem">
+        <div class="example deck"></div>
+      </section>
 
-      <app-example title="Flip" subtitle="Flipping each card in sequence" type="deck example flip"></app-example>
+      <div class="mb-8 flex items-center gap-1">
+        <button id="play" class="bg-gray-300 rounded-sm px-3 py-1">Play</button>
+        <button id="pause" class="bg-gray-300 rounded-sm px-3 py-1">Pause</button>
+        <button id="stop" class="bg-gray-300 rounded-sm px-3 py-1">Stop</button>
+        <p class="ml-4">Speed:</p>
+        <input type="number" id="speed" class="bg-gray-200 px-3 py-1 w-16" min="0" max="10" value="1" step="0.2" />
+      </div>
 
-      <app-example title="Fan" subtitle="Fanning the cards in sequence" type="deck example fan"></app-example>
+      <h3 class="mb-2 text-gray-600">Code:</h3>
+      <pre class="bg-gray-800 text-white p-5"><code id="code"></code></pre>
 
-      <app-example title="Twist" subtitle="Rotating the cards in sequence" type="deck example rotate"></app-example>
-
-      <app-example title="Hover & Flip" subtitle="Hover to flip each card" type="deck example hover-flip"></app-example>
-
-      <app-example
-        title="Distribute"
-        subtitle="Animation of distributing cards to 4 players"
-        type="deck example distribute"
-        height="50"
-      ></app-example>
-
-      <app-example
-        title="Waterfall"
-        subtitle="Animation of a card waterfall"
-        type="deck example waterfall"
-        height="50"
-      ></app-example>
-
-      <app-example title="Wave" subtitle="A sine wave with cards" type="deck example wave" height="30"></app-example>
+      <!-- <app-example title="Hover & Flip" subtitle="Hover to flip each card" type="deck example hover-flip"></app-example>
 
       <h3 class="mb-1">Drag N Drop</h3>
       <p class="mb-3">Animation of dragging and dropping cards</p>

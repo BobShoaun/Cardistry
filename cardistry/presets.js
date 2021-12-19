@@ -1,41 +1,37 @@
 // preset animations
-export const spreadLeft = () => ({
-  translateX: i => i * -25,
+export const spreadLeft = (amount = 25) => ({
+  moveX: i => i * -amount,
 });
 
-export const spreadRight = () => ({
-  translateX: i => i * 25,
+export const spreadRight = (amount = 25) => ({
+  moveX: i => i * amount,
 });
 
-export const spreadCenter = (duration = 200, amount = 25) => ({
-  translateX: (i, n) => (i + 0.5 - n / 2) * amount,
-  duration,
+export const spreadCenter = (amount = 25) => ({
+  moveX: (i, n) => (i + 0.5 - n / 2) * amount,
 });
 
 export const stack = () => ({
-  translateX: 0,
-  translateY: 0,
-  rotateZ: 0,
+  moveX: 0,
+  moveY: 0,
+  rotate: 0,
   duration: 300,
-  // delay: i => i * 100,
-  // transformOrigin: "50% 50%",
 });
 
 export const disperse = (amount = 200) => ({
-  translateX: () => Math.random() * amount - amount / 2,
-  translateY: () => Math.random() * amount - amount / 2,
-  rotateZ: () => Math.random() * 180 - 90,
-  duration: 500,
+  moveX: () => Math.random() * amount - amount / 2,
+  moveY: () => Math.random() * amount - amount / 2,
+  rotate: () => Math.random() * 180 - 90,
+  duration: 400,
   delay: (i, n) => (n - i) * 100,
 });
 
 export const fan = (angle = 5) => ({
-  transformOrigin: "50% 200%",
-  rotateZ: (i, n) => (i + 0.5 - n / 2) * angle,
-  duration: 500,
+  originY: 2,
+  rotate: (i, n) => (i + 0.5 - n / 2) * angle,
 });
 
 export const flip = () => ({
-  contentRotateY: 180,
+  flipY: 180,
   duration: 400,
 });

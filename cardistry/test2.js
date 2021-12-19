@@ -28,14 +28,14 @@ class Cardistry {
   constructor({
     target,
     initialState = {
-      translateX: 0,
-      translateY: 0,
-      rotateZ: 0,
+      moveX: 0,
+      moveY: 0,
+      rotate: 0,
       scale: 1,
       originX: 0.5,
       originY: 0.5,
-      zIndex: 1,
-      contentRotateY: 0,
+      order: 1,
+      flipY: 0,
     },
     states,
     loop = true,
@@ -73,14 +73,14 @@ class Cardistry {
     this.cards = this.parent.querySelectorAll(".card");
     this.cardContents = [...this.cards].map(card => card.querySelector(".content"));
     const {
-      translateX = 0,
-      translateY = 0,
-      rotateZ = 0,
+      moveX = 0,
+      moveY = 0,
+      rotate = 0,
       scale = 1,
       originX = 0.5,
       originY = 0.5,
-      zIndex = 1,
-      contentRotateY = 0,
+      order = 1,
+      flipY = 0,
     } = this.initialState;
 
     const n = this.cards.length;
@@ -90,11 +90,10 @@ class Cardistry {
         const getValue = prop => (typeof prop === "function" ? prop(i, n) : prop);
 
         this.cards[i].style.transformOrigin = `${getValue(originX) * 100}% ${getValue(originY) * 100}%`;
-        this.cards[i].style.zIndex = getValue(zIndex);
-        this.cards[i].style.transform = `translateX(${getValue(translateX)}px)
-        translateY(${getValue(translateY)}px)
-        rotateZ(${getValue(rotateZ)}deg), scale(${getValue(scale)})`;
-        this.cardContents[i].style.transform = `rotateY(${getValue(contentRotateY)}deg)`;
+        this.cards[i].style.zIndex = getValue(order);
+        this.cards[i].style.transform = `translateX(${getValue(moveX)}px) translateY(${getValue(moveY)}px)
+        rotateZ(${getValue(rotate)}deg) scale(${getValue(scale)})`;
+        this.cardContents[i].style.transform = `rotateY(${getValue(flipY)}deg)`;
       }
     });
   }
@@ -111,16 +110,16 @@ class Cardistry {
     this.#speed = Math.max(value, 0);
   }
 
-  // https://javascript.info/js-animation
+  // credits: https://javascript.info/js-animation
   async #animate({ timing, draw, duration, delay }) {
     await new Promise(resolve => setTimeout(resolve, delay / this.#speed));
     return new Promise((resolve, reject) => {
       let prevTime = performance.now();
       let totalTime = 0;
       const frame = time => {
-        if (!this.isInViewport()) {
-          this.status = "paused";
-        } else this.status = "playing";
+        // if (!this.isInViewport()) {
+        //   this.status = "paused";
+        // } else this.status = "playing";
         if (this.status === "stopped") return resolve();
 
         const deltaTime = time - prevTime;
@@ -184,14 +183,14 @@ class Cardistry {
             getValue(propName) ?? (this.relative ? prevStateCards[i][propName] : null);
 
           const { duration = 500 } = state;
-          const _translateX = getValueRelative("translateX") ?? 0;
-          const _translateY = getValueRelative("translateY") ?? 0;
-          const _rotateZ = getValueRelative("rotateZ") ?? 0;
+          const _moveX = getValueRelative("moveX") ?? 0;
+          const _moveY = getValueRelative("moveY") ?? 0;
+          const _rotate = getValueRelative("rotate") ?? 0;
           const _scale = getValueRelative("scale") ?? 1;
           const _originX = getValueRelative("originX") ?? 0.5;
           const _originY = getValueRelative("originY") ?? 0.5;
-          const _zIndex = getValueRelative("zIndex") ?? 1;
-          const _contentRotateY = getValueRelative("contentRotateY") ?? 0;
+          const _order = getValueRelative("order") ?? 1;
+          const _flipY = getValueRelative("flipY") ?? 0;
 
           const _delay = getValue("delay") ?? 0;
           const _timing = this.getTiming(state.timing) ?? this.timing;
@@ -203,16 +202,16 @@ class Cardistry {
             draw: progress => {
               this.cards[i].style.transformOrigin = `${_originX * 100}% ${_originY * 100}%`;
               if (progress >= 0.5) {
-                this.cards[i].style.zIndex = _zIndex;
+                this.cards[i].style.zIndex = _order;
               }
               this.cards[i].style.transform = `translateX(${
-                (_translateX - _prevState.translateX) * progress + _prevState.translateX
+                (_moveX - _prevState.moveX) * progress + _prevState.moveX
               }px)
-          translateY(${(_translateY - _prevState.translateY) * progress + _prevState.translateY}px) rotateZ(${
-                (_rotateZ - _prevState.rotateZ) * progress + _prevState.rotateZ
+          translateY(${(_moveY - _prevState.moveY) * progress + _prevState.moveY}px) rotateZ(${
+                (_rotate - _prevState.rotate) * progress + _prevState.rotate
               }deg) scale(${(_scale - _prevState.scale) * progress + _prevState.scale})`;
               this.cardContents[i].style.transform = `rotateY(${
-                (_contentRotateY - _prevState.contentRotateY) * progress + _prevState.contentRotateY
+                (_flipY - _prevState.flipY) * progress + _prevState.flipY
               }deg)`;
             },
             duration,
@@ -220,14 +219,14 @@ class Cardistry {
           });
           animations.push(animation);
 
-          prevStateCards[i].translateX = _translateX;
-          prevStateCards[i].translateY = _translateY;
-          prevStateCards[i].rotateZ = _rotateZ;
+          prevStateCards[i].moveX = _moveX;
+          prevStateCards[i].moveY = _moveY;
+          prevStateCards[i].rotate = _rotate;
           prevStateCards[i].scale = _scale;
           prevStateCards[i].originX = _originX;
           prevStateCards[i].originY = _originY;
-          prevStateCards[i].contentRotateY = _contentRotateY;
-          prevStateCards[i].zIndex = _zIndex;
+          prevStateCards[i].flipY = _flipY;
+          prevStateCards[i].order = _order;
         }
 
         await Promise.all(animations);
