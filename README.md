@@ -1,4 +1,4 @@
-# Cardistry
+# 🅲🅰🆁🅳🅸🆂🆃🆁🆈
 
 An expressive and versatile card animation engine, for animating cards or card-like visuals in your website.
 
@@ -18,32 +18,27 @@ For full documentation, visit [cardistry.herokuapp.com](https://cardistry.heroku
 Setup a simple hello world example to get you up and running.
 Import the library as an ES6 module.
 
-```
-import Cardistry from 'cardistry';
+```javascript
+import Cardistry from "cardistry";
 ```
 
 Setup your HTML with cards to be animated.
 
-```
+```html
 <section class="example-cards">
-  <div class="card"> <div class="content"> </div> </div>
-  <div class="card"> <div class="content"> </div> </div>
-  <div class="card"> <div class="content"> </div> </div>
-  <div class="card"> <div class="content"> </div> </div>
+  <div class="card"><div class="content"></div></div>
+  <div class="card"><div class="content"></div></div>
+  <div class="card"><div class="content"></div></div>
+  <div class="card"><div class="content"></div></div>
 </section>
 ```
 
 Use the Cardistry state machine to animate the group of cards.
 
-```
+```javascript
 new Cardistry({
   target: ".example-cards",
   loop: true,
-  states: [
-    { moveX: 250, moveY: -100 },
-    { moveY: 100 },
-    { moveX: -250, moveY: -100 },
-    { moveY: 100 }
-  ]
+  states: [{ moveX: 250, moveY: -100 }, { moveY: 100 }, { moveX: -250, moveY: -100 }, { moveY: 100 }],
 });
 ```
