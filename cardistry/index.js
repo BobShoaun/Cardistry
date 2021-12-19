@@ -1,128 +1,238 @@
-// main function for animation
-const cardistry = async ({ target, states, loop, relative }) => {
-  const hand = document.querySelector(target);
-  if (!hand) return;
-
-  const cards = hand.querySelectorAll(".card");
-  const cardContents = [...cards].map(card => card.querySelector(".content"));
-  const cardProps = [...cards];
-
-  const resetCardProps = transitionPropsOnly => {
-    cardProps.forEach(card => {
-      card.duration = 200;
-      card.delay = 0;
-      card.timing = "ease";
-      if (transitionPropsOnly) return;
-      card.translateX = 0;
-      card.translateY = 0;
-      card.rotateX = 0;
-      card.rotateY = 0;
-      card.rotateZ = 0;
-      card.scale = 1;
-      card.zIndex = 1;
-      card.transformOrigin = "50% 50%";
-      card.contentRotateY = 0;
-      card.contentRotateZ = 0;
-      card.hoverScale = 1;
-    });
-  };
-
-  resetCardProps();
-
-  const getValue = value => (typeof value === "function" ? value(i, cards.length) : value);
-
-  const apply = async state => {
-    resetCardProps(relative);
-
-    for (let i = 0; i < cards.length; i++) {
-      const index = state.flip ? cards.length - i - 1 : i;
-
-      for (const [prop, value] of Object.entries(state))
-        cardProps[index][prop] = typeof value === "function" ? value(index, cards.length) : value;
-    }
-
-    const totalDurations = [];
-    for (let i = 0; i < cards.length; i++) {
-      const {
-        translateX,
-        translateY,
-        rotateX,
-        rotateY,
-        rotateZ,
-        scale,
-        zIndex,
-        transformOrigin,
-        contentRotateY,
-        contentRotateZ,
-        hoverScale,
-        hover,
-        focus,
-        duration,
-        delay,
-        timing,
-      } = cardProps[i];
-
-      totalDurations[i] = delay + duration;
-
-      requestAnimationFrame(() => {
-        cards[i].style.zIndex = zIndex;
-        cards[i].style.transitionDuration = `${duration}ms`;
-        cards[i].style.transitionDelay = `${delay}ms`;
-        cards[i].style.transitionTimingFunction = timing;
-        cards[i].style.transformOrigin = transformOrigin;
-        cards[i].style.transform = `translateX(${translateX}px)
-                                    translateY(${translateY}px)
-                                    rotateX(${rotateX}deg)
-                                    rotateY(${rotateY}deg)
-                                    rotateZ(${rotateZ}deg)
-                                    scale(${scale})`;
-        cardContents[i].style.transitionDuration = `${duration}ms`;
-        cardContents[i].style.transitionDelay = `${delay}ms`;
-        cardContents[i].style.transform = `rotateY(${contentRotateY}deg)
-                                           rotateZ(${contentRotateZ}deg)`;
-      });
-
-      cards[i].onmouseover = () =>
-        requestAnimationFrame(() => {
-          cardContents[i].style.transform = `translateX(${hover?.translateX ?? 0}px) 
-      translateY(${hover?.translateY ?? 0}px)
-      rotateY(${hover?.rotateY}deg) 
-      rotateZ(${contentRotateZ}deg) 
-      scale(${hover?.scale ?? 1})`;
-        });
-
-      cards[i].onmouseleave = () =>
-        requestAnimationFrame(() => {
-          cardContents[i].style.transform = `rotateY(${contentRotateY}deg) 
-          rotateZ(${contentRotateZ}deg) 
-          scale(${scale})`;
-        });
-
-      cards[i].onfocus = () =>
-        requestAnimationFrame(() => {
-          cardContents[i].style.transform = `translateX(${focus?.translateX ?? 0}px) 
-        translateY(${focus?.translateY ?? 0}px)
-        rotateY(${focus?.rotateY}deg) 
-        rotateZ(${contentRotateZ}deg) 
-        scale(${focus?.scale ?? 1})`;
-        });
-
-      cards[i].onblur = () =>
-        requestAnimationFrame(() => {
-          cardContents[i].style.transform = `rotateY(${contentRotateY}deg) 
-        rotateZ(${contentRotateZ}deg) 
-        scale(${scale})`;
-        });
-    }
-
-    return new Promise((resolve, reject) => setTimeout(resolve, Math.max(...totalDurations)));
-  };
-
-  // await new Promise(resolve => setTimeout(resolve, 500)); // sleep
-
-  if (typeof loop === "boolean") while (loop) for (const state of states) await apply(state);
-
-  for (let i = loop ?? 0; i >= 0; i--) for (const state of states) await apply(state);
+const linear = t => t;
+const quad = t => t * t;
+const easeIn = t => t * t * t;
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+const ease = t => {
+  if (t <= 0.5) return 2 * t * t;
+  t -= 0.5;
+  return 2 * t * (1 - t) + 0.5;
 };
 
-export default cardistry;
+const elastic = t => {
+  const c4 = (2 * Math.PI) / 3;
+  return t === 0 ? 0 : t === 1 ? 1 : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
+};
+
+const bounce = t => {
+  const n1 = 7.5625;
+  const d1 = 2.75;
+  if (t < 1 / d1) return n1 * t * t;
+  else if (t < 2 / d1) return n1 * (t -= 1.5 / d1) * t + 0.75;
+  else if (t < 2.5 / d1) return n1 * (t -= 2.25 / d1) * t + 0.9375;
+  return n1 * (t -= 2.625 / d1) * t + 0.984375;
+};
+
+class Cardistry {
+  #speed;
+
+  constructor({
+    target,
+    initialState = {
+      moveX: 0,
+      moveY: 0,
+      rotate: 0,
+      scale: 1,
+      originX: 0.5,
+      originY: 0.5,
+      order: 1,
+      flipY: 0,
+    },
+    states,
+    loop = true,
+    relative = false,
+    autoplay = true,
+    timing = ease,
+    pauseWhenNotInView = true,
+  }) {
+    this.target = target;
+    this.initialState = initialState;
+    this.states = states;
+    this.loop = loop;
+    this.relative = relative;
+    this.autoplay = autoplay;
+    this.#speed = 1;
+    this.status = "stopped"; // playing, paused, stopped
+    this.timing = this.getTiming(timing);
+    this.initialize();
+    if (autoplay) this.play();
+  }
+
+  isInViewport() {
+    const rect = this.parent.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  initialize() {
+    this.parent = document.querySelector(this.target);
+    if (!this.parent) return;
+    this.cards = this.parent.querySelectorAll(".card");
+    this.cardContents = [...this.cards].map(card => card.querySelector(".content"));
+    const {
+      moveX = 0,
+      moveY = 0,
+      rotate = 0,
+      scale = 1,
+      originX = 0.5,
+      originY = 0.5,
+      order = 1,
+      flipY = 0,
+    } = this.initialState;
+
+    const n = this.cards.length;
+
+    requestAnimationFrame(() => {
+      for (let i = 0; i < n; i++) {
+        const getValue = prop => (typeof prop === "function" ? prop(i, n) : prop);
+
+        this.cards[i].style.transformOrigin = `${getValue(originX) * 100}% ${getValue(originY) * 100}%`;
+        this.cards[i].style.zIndex = getValue(order);
+        this.cards[i].style.transform = `translateX(${getValue(moveX)}px) translateY(${getValue(moveY)}px)
+        rotateZ(${getValue(rotate)}deg) scale(${getValue(scale)})`;
+        this.cardContents[i].style.transform = `rotateY(${getValue(flipY)}deg)`;
+      }
+    });
+  }
+
+  pause() {
+    this.status = "paused";
+  }
+
+  stop() {
+    this.status = "stopped";
+  }
+
+  set speed(value) {
+    this.#speed = Math.max(value, 0);
+  }
+
+  // credits: https://javascript.info/js-animation
+  async #animate({ timing, draw, duration, delay }) {
+    await new Promise(resolve => setTimeout(resolve, delay / this.#speed));
+    return new Promise((resolve, reject) => {
+      let prevTime = performance.now();
+      let totalTime = 0;
+      const frame = time => {
+        // if (!this.isInViewport()) {
+        //   this.status = "paused";
+        // } else this.status = "playing";
+        if (this.status === "stopped") return resolve();
+
+        const deltaTime = time - prevTime;
+        totalTime += deltaTime * (this.status === "paused" ? 0 : this.#speed);
+        prevTime = time;
+
+        // normalizedTime goes from 0 to 1
+        const normalizedTime = Math.min(totalTime / duration, 1);
+        const progress = timing(normalizedTime);
+        draw(progress);
+        requestAnimationFrame(frame);
+        if (normalizedTime >= 1) return resolve();
+      };
+      requestAnimationFrame(frame);
+    });
+  }
+
+  getTiming(timingInput) {
+    if (!timingInput) return null;
+    if (typeof timingInput === "function") return timingInput;
+    switch (timingInput) {
+      case "linear":
+        return linear;
+      case "ease":
+        return ease;
+      case "quad":
+        return quad;
+      case "ease-in":
+        return easeIn;
+      case "ease-out":
+        return easeOut;
+      case "elastic":
+        return elastic;
+      case "bounce":
+        return bounce;
+      default:
+        console.error("invalid timing input for state");
+    }
+  }
+
+  async play() {
+    if (this.status === "paused") {
+      this.status = "playing";
+      return;
+    }
+    if (this.status !== "stopped") return; // avoid multiple instances
+    this.status = "playing";
+    const n = this.cards.length;
+
+    const prevStateCards = new Array(n);
+    for (let i = 0; i < n; i++) prevStateCards[i] = { ...this.initialState };
+
+    for (let k = typeof this.loop === "boolean" ? Infinity : this.loop; this.status !== "stopped" && k; k--) {
+      for (const state of this.states) {
+        const animations = [];
+
+        for (let i = 0; i < n; i++) {
+          const getValue = propName =>
+            typeof state[propName] === "function" ? state[propName](i, n) : state[propName];
+          const getValueRelative = propName =>
+            getValue(propName) ?? (this.relative ? prevStateCards[i][propName] : null);
+
+          const { duration = 500 } = state;
+          const _moveX = getValueRelative("moveX") ?? 0;
+          const _moveY = getValueRelative("moveY") ?? 0;
+          const _rotate = getValueRelative("rotate") ?? 0;
+          const _scale = getValueRelative("scale") ?? 1;
+          const _originX = getValueRelative("originX") ?? 0.5;
+          const _originY = getValueRelative("originY") ?? 0.5;
+          const _order = getValueRelative("order") ?? 1;
+          const _flipY = getValueRelative("flipY") ?? 0;
+
+          const _delay = getValue("delay") ?? 0;
+          const _timing = this.getTiming(state.timing) ?? this.timing;
+
+          const _prevState = { ...prevStateCards[i] };
+
+          const animation = this.#animate({
+            timing: _timing,
+            draw: progress => {
+              this.cards[i].style.transformOrigin = `${_originX * 100}% ${_originY * 100}%`;
+              if (progress >= 0.5) {
+                this.cards[i].style.zIndex = _order;
+              }
+              this.cards[i].style.transform = `translateX(${
+                (_moveX - _prevState.moveX) * progress + _prevState.moveX
+              }px)
+          translateY(${(_moveY - _prevState.moveY) * progress + _prevState.moveY}px) rotateZ(${
+                (_rotate - _prevState.rotate) * progress + _prevState.rotate
+              }deg) scale(${(_scale - _prevState.scale) * progress + _prevState.scale})`;
+              this.cardContents[i].style.transform = `rotateY(${
+                (_flipY - _prevState.flipY) * progress + _prevState.flipY
+              }deg)`;
+            },
+            duration,
+            delay: _delay,
+          });
+          animations.push(animation);
+
+          prevStateCards[i].moveX = _moveX;
+          prevStateCards[i].moveY = _moveY;
+          prevStateCards[i].rotate = _rotate;
+          prevStateCards[i].scale = _scale;
+          prevStateCards[i].originX = _originX;
+          prevStateCards[i].originY = _originY;
+          prevStateCards[i].flipY = _flipY;
+          prevStateCards[i].order = _order;
+        }
+
+        await Promise.all(animations);
+      }
+    }
+  }
+}
+
+export default Cardistry;

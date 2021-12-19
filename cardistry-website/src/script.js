@@ -1,8 +1,5 @@
-// import cardistry from "../../cardistry";
-import Cardistry from "../../cardistry/test2";
-
-import { stack, fan, spreadRight, flip, spreadLeft, disperse, spreadCenter } from "../../cardistry/presets";
-
+import Cardistry from "../../cardistry";
+import { fan, flip, disperse, spreadCenter } from "../../cardistry/presets";
 import { setupCards } from "./helpers";
 
 setupCards(".example.main");
@@ -17,7 +14,7 @@ new Cardistry({
       delay: 700,
     },
     {
-      ...spreadCenter(500),
+      ...spreadCenter(),
       delay: 500,
     },
     {

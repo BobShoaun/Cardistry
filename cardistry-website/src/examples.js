@@ -1,416 +1,331 @@
-import cardistry from "../../cardistry";
-import Cardistry from "../../cardistry/test2";
-import { stack, fan, spreadRight, flip, spreadLeft, disperse, spreadCenter } from "cardistry/presets";
+import Cardistry from "../../cardistry";
+import { stack, spreadRight, spreadLeft, spreadCenter } from "../../cardistry/presets";
+
 import { setupCards } from "./helpers";
 
-setupCards(".example.move", 1);
-setupCards(".example.spread");
-setupCards(".example.flip");
-setupCards(".example.fan");
-setupCards(".example.rotate");
-setupCards(".example.hover-flip");
-setupCards(".example.distribute");
-setupCards(".example.wave", 30);
-setupCards(".example.waterfall", 40);
-
-const instance = new Cardistry({
-  target: ".example.move",
+const examples = [
+  {
+    name: "Move",
+    description: "Animation of a card moving",
+    numCards: 1,
+    getInstance: () =>
+      new Cardistry({
+        target: ".example",
+        loop: true,
+        relative: true,
+        autoplay: false,
+        timing: "quad",
+        states: [
+          {
+            moveX: 250,
+            moveY: -100,
+          },
+          {
+            moveY: 100,
+          },
+          {
+            moveX: -250,
+            moveY: -100,
+          },
+          {
+            moveY: 100,
+          },
+        ],
+      }),
+    code: `new Cardistry({
+  target: ".example",
   loop: true,
   relative: true,
+  autoplay: false,
   timing: "quad",
   states: [
     {
-      translateX: 250,
-      translateY: -100,
+      moveX: 250,
+      moveY: -100,
     },
     {
-      translateY: 100,
+      moveY: 100,
     },
     {
-      translateX: -250,
-      translateY: -100,
+      moveX: -250,
+      moveY: -100,
     },
     {
-      translateY: 100,
+      moveY: 100,
     },
   ],
-});
+})`,
+  },
+  {
+    name: "Spread",
+    description: "Animation of spreading a deck of cards",
+    numCards: 10,
+    getInstance: () =>
+      new Cardistry({
+        target: ".example",
+        loop: true,
+        autoplay: false,
+        timing: "quad",
+        // relative: true,
+        states: [
+          { ...stack(), delay: 500 },
+          { ...spreadCenter(), duration: 700 },
+          { ...stack(), delay: 500 },
+          { ...spreadLeft(), duration: 700 },
+          { ...stack(), delay: 500 },
+          { ...spreadRight(), duration: 700 },
+        ],
+      }),
+    code: ``,
+  },
+  {
+    name: "Flip",
+    description: "Flipping each card in sequence",
+    numCards: 10,
+    getInstance: () =>
+      new Cardistry({
+        target: ".example",
+        relative: true,
+        autoplay: false,
+        initialState: { ...spreadCenter(), order: i => i },
+        states: [
+          {
+            flipY: 0,
+            duration: 1000,
+            delay: (i, n) => (n - i) * 50,
+            order: i => i,
+          },
+          {
+            flipY: 180,
+            duration: 1000,
+            delay: i => i * 50,
+            order: (i, n) => n - i,
+          },
+        ],
+      }),
+    code: ``,
+  },
+  {
+    name: "Fan",
+    description: "Fanning the cards in sequence",
+    numCards: 13,
+    getInstance: () =>
+      new Cardistry({
+        target: ".example",
+        loop: true,
+        relative: true,
+        autoplay: false,
+        states: [
+          {
+            originY: 2,
+            rotate: (_, n) => (0.5 - n / 2) * 6,
+            delay: 500,
+            duration: 500,
+          },
+          {
+            rotate: (i, n) => (i + 0.5 - n / 2) * 6,
+            duration: 500,
+          },
+          {
+            rotate: 0,
+            duration: 500,
+            delay: 700,
+          },
+        ],
+      }),
+    code: ``,
+  },
+  {
+    name: "Twist",
+    description: "Rotating the cards in sequence",
+    numCards: 13,
+    getInstance: () =>
+      new Cardistry({
+        target: ".example",
+        loop: true,
+        autoplay: false,
+        states: [
+          {
+            ...spreadCenter(40),
+            rotate: (i, n) => -90 + i * (360 / (n - 1)),
+            duration: 1000,
+            delay: 500,
+          },
+          {
+            ...stack(),
+            duration: 700,
+            delay: 500,
+          },
+        ],
+      }),
+    code: ``,
+  },
+  {
+    name: "Distribute",
+    description: "Animation of distributing cards to 4 players",
+    numCards: 16,
+    height: 50,
+    getInstance: () =>
+      new Cardistry({
+        target: ".example",
+        loop: true,
+        autoplay: false,
+        relative: true,
+        states: [
+          {
+            flipY: 180,
+            order: (i, n) => n - i,
+            moveY: 0,
+            moveX: 0,
+            rotate: 0,
+            delay: 0,
+          },
+          {
+            moveX: (i, n) => (i % 4 === 0 || i % 4 === 2 ? 0 : i % 4 === 1 ? 300 : -300),
+            moveY: i => (i % 4 === 1 || i % 4 === 3 ? 0 : i % 4 === 0 ? -300 : 300),
+            delay: i => i * 200,
+            duration: 500,
+            order: (i, n) => i,
+            rotate: () => Math.random() * 180,
+          },
+          {
+            flipY: 0,
+            delay: 500,
+          },
+          {
+            delay: 2000,
+          },
+          {
+            moveY: 0,
+            moveX: 0,
+            duration: 500,
+          },
+        ],
+      }),
+    code: ``,
+  },
+  {
+    name: "Waterfall",
+    description: "Animation of a card waterfall",
+    numCards: 40,
+    height: 50,
+    getInstance: () =>
+      new Cardistry({
+        target: ".example",
+        loop: true,
+        autoplay: false,
+        states: [
+          {
+            delay: 1000,
+            moveY: -270,
+            rotate: 90,
+          },
+          {
+            moveX: i => (i % 2 === 0 ? -100 : 100),
+            moveY: -270,
+            delay: 500,
+            rotate: 90,
+          },
+          {
+            moveY: 270,
+            delay: (i, n) => (n - i) * 70,
+            rotate: i => (i % 2 === 0 ? 180 : 0),
+            duration: 1000,
+          },
+        ],
+      }),
+    code: ``,
+  },
+  {
+    name: "Wave",
+    description: "A sine wave with cards",
+    numCards: 30,
+    height: 30,
+    getInstance: () =>
+      new Cardistry({
+        target: ".example",
+        loop: true,
+        autoplay: false,
+        timing: "linear",
+        initialState: {
+          flipY: 180,
+          moveX: (i, n) => (i + 0.5 - n / 2) * 25,
+          moveY: i => Math.sin(i / 3) * 100,
+        },
+        states: [
+          {
+            flipY: 180,
+            moveX: (i, n) => (i + 0.5 - n / 2) * 25,
+            moveY: i => Math.sin(i / 3) * 100,
+            duration: 400,
+          },
+          {
+            flipY: 180,
+            moveX: (i, n) => (i + 0.5 - n / 2) * 25,
+            moveY: i => Math.cos(i / 3) * 100,
+            duration: 400,
+          },
+          {
+            flipY: 180,
+            moveX: (i, n) => (i + 0.5 - n / 2) * 25,
+            moveY: i => Math.sin(i / 3 + Math.PI) * 100,
+            duration: 400,
+          },
+          {
+            flipY: 180,
+            moveX: (i, n) => (i + 0.5 - n / 2) * 25,
+            moveY: i => Math.cos(i / 3 + Math.PI) * 100,
+            duration: 400,
+          },
+        ],
+      }),
+    code: ``,
+  },
+];
+
+let currExampleIndex = 0;
+
+let currInstance = null;
+
+const setExample = example => {
+  if (currInstance) currInstance.stop();
+  setupCards(".example", example.numCards);
+  currInstance = example.getInstance();
+  currInstance.initialize();
+  currInstance.speed = 1;
+  currInstance.play();
+  document.getElementById("code").innerText = example.code;
+  document.getElementById("title").innerText = example.name;
+  document.getElementById("description").innerText = example.description;
+  document.getElementById("table").style.height = (example.height ?? 30) + "rem";
+};
+
+setExample(examples[currExampleIndex]);
+
+document.getElementById("previous").onclick = () => {
+  currExampleIndex--;
+  if (currExampleIndex < 0) currExampleIndex = examples.length - 1;
+  setExample(examples[currExampleIndex]);
+};
+
+document.getElementById("next").onclick = () => {
+  currExampleIndex++;
+  if (currExampleIndex >= examples.length) currExampleIndex = 0;
+  setExample(examples[currExampleIndex]);
+};
 
 document.getElementById("play").onclick = () => {
-  // instance.play();
-  // instance.isPlaying = true;
-  // instance.speed = 1;
-  instance.play();
+  currInstance.play();
 };
 
 document.getElementById("pause").onclick = () => {
-  instance.pause();
-  // instance2.pause();
+  currInstance.pause();
+};
+
+document.getElementById("stop").onclick = () => {
+  currInstance.stop();
 };
 
 document.getElementById("speed").onchange = e => {
-  instance.speed = parseFloat(e.target.value);
-  instance2.speed = parseFloat(e.target.value);
+  currInstance.speed = parseFloat(e.target.value);
 };
-
-const instance2 = new Cardistry({
-  target: ".example.spread",
-  loop: true,
-  autoplay: true,
-  timing: "quad",
-  // relative: true,
-  states: [
-    { ...stack(), delay: 500 },
-    { ...spreadCenter(), duration: 700 },
-    { ...stack(), delay: 500 },
-    { ...spreadLeft(), duration: 700 },
-    { ...stack(), delay: 500 },
-    { ...spreadRight(), duration: 700 },
-  ],
-});
-
-new Cardistry({
-  target: ".example.flip",
-  relative: true,
-  autoplay: false,
-  initialState: { ...spreadCenter(), zIndex: i => i },
-  states: [
-    {
-      contentRotateY: 0,
-      duration: 1000,
-      delay: (i, n) => (n - i) * 50,
-      zIndex: i => i,
-    },
-    {
-      contentRotateY: 180,
-      duration: 1000,
-      delay: i => i * 50,
-      zIndex: (i, n) => n - i,
-    },
-  ],
-});
-
-new Cardistry({
-  target: ".example.fan",
-  loop: true,
-  relative: true,
-  autoplay: false,
-  states: [
-    stack(),
-    {
-      originY: 2,
-      rotateZ: (_, n) => (0.5 - n / 2) * 6,
-      delay: 500,
-      duration: 500,
-    },
-    {
-      // originY: 2,
-      rotateZ: (i, n) => (i + 0.5 - n / 2) * 6,
-      duration: 500,
-    },
-    {
-      // originY: 2,
-      rotateZ: 0,
-      duration: 500,
-      delay: 700,
-    },
-  ],
-});
-
-new Cardistry({
-  target: ".example.rotate",
-  loop: true,
-  autoplay: false,
-  states: [
-    {
-      ...stack(),
-      duration: 700,
-      delay: 500,
-    },
-    {
-      ...spreadCenter(400, 40),
-      rotateZ: (i, n) => -90 + i * (360 / (n - 1)),
-      duration: 1000,
-      delay: 500,
-    },
-  ],
-});
-
-cardistry({
-  target: ".example.hover-flip",
-  relative: true,
-
-  states: [
-    stack(),
-    fan(),
-    flip(),
-    {
-      duration: 200,
-      hover: {
-        scale: 1.2,
-        translateY: -30,
-        rotateY: 0,
-      },
-      focus: {
-        scale: 1.2,
-        translateY: -30,
-        rotateY: 0,
-      },
-    },
-  ],
-});
-
-new Cardistry({
-  target: ".example.distribute",
-  loop: true,
-  relative: true,
-  autoplay: false,
-  states: [
-    {
-      contentRotateY: 180,
-      zIndex: (i, n) => n - i,
-      translateY: 0,
-      translateX: 0,
-      rotateZ: 0,
-      delay: 0,
-    },
-    {
-      translateX: (i, n) => (i % 4 === 0 || i % 4 === 2 ? 0 : i % 4 === 1 ? 300 : -300),
-      translateY: i => (i % 4 === 1 || i % 4 === 3 ? 0 : i % 4 === 0 ? -300 : 300),
-      delay: i => i * 200,
-      duration: 500,
-      zIndex: (i, n) => i,
-      rotateZ: () => Math.random() * 180,
-    },
-    {
-      contentRotateY: 0,
-      delay: 500,
-    },
-    {
-      delay: 2000,
-    },
-    {
-      translateY: 0,
-      translateX: 0,
-      duration: 500,
-    },
-  ],
-});
-
-new Cardistry({
-  target: ".example.wave",
-  autoplay: false,
-  loop: true,
-  states: [
-    {
-      contentRotateY: 180,
-      translateX: (i, n) => (i + 0.5 - n / 2) * 25,
-      translateY: i => Math.sin(i / 3) * 100,
-      timing: "linear",
-    },
-    {
-      contentRotateY: 180,
-      translateX: (i, n) => (i + 0.5 - n / 2) * 25,
-      translateY: i => Math.cos(i / 3) * 100,
-      timing: "linear",
-    },
-    {
-      contentRotateY: 180,
-      translateX: (i, n) => (i + 0.5 - n / 2) * 25,
-      translateY: i => Math.sin(i / 3 + Math.PI) * 100,
-      timing: "linear",
-    },
-    {
-      contentRotateY: 180,
-      translateX: (i, n) => (i + 0.5 - n / 2) * 25,
-      translateY: i => Math.cos(i / 3 + Math.PI) * 100,
-      timing: "linear",
-    },
-  ],
-});
-
-new Cardistry({
-  target: ".example.waterfall",
-  loop: true,
-  autoplay: false,
-  states: [
-    {
-      delay: 1000,
-      translateY: -270,
-      rotateZ: 90,
-    },
-    {
-      translateX: i => (i % 2 === 0 ? -100 : 100),
-      translateY: -270,
-      delay: 500,
-      rotateZ: 90,
-    },
-    {
-      translateY: 270,
-      delay: (i, n) => (n - i) * 70,
-      rotateZ: i => (i % 2 === 0 ? 180 : 0),
-      duration: 1000,
-      timing: "ease-in-out",
-    },
-  ],
-});
-
-setupCards(".example.drag-n-drop-1", 5, true);
-setupCards(".example.drag-n-drop-2", 5, true);
-
-// WIP: drag and drop
-
-const dnd1 = new Cardistry({
-  target: ".example.drag-n-drop-1",
-  autoplay: false,
-  initialState: {
-    translateX: (i, n) => (i + 0.5 - (n - 1) / 2) * 50,
-  },
-  states: [
-    {
-      translateX: (i, n) => (i + 0.5 - (n - 1) / 2) * 50,
-      duration: 100,
-    },
-    {
-      translateX: (i, n) => (i + 0.5 - n / 2) * 50,
-      duration: 500,
-    },
-  ],
-  loop: false,
-  // autoplay: false,
-});
-
-const dnd2 = new Cardistry({
-  target: ".example.drag-n-drop-2",
-  autoplay: false,
-  states: [spreadCenter(100, 50)],
-  loop: false,
-
-  // autoplay: false,
-});
-
-// const deck = document.querySelector(".example.drag-n-drop-1");
-// const cards = deck.querySelectorAll("app-card");
-
-const containers = document.querySelectorAll(".drag-container");
-const dragArea = document.querySelector(".drag-container-parent");
-
-// deck.ondragover = e => {
-//   e.preventDefault();
-//   const card = deck.querySelector(".dragging");
-//   const box = card.getBoundingClientRect();
-//   // console.log(box);
-// };
-
-let dragClone = null;
-
-const initDragClone = (x, y) => {
-  // dragClone.style = null;
-  dragClone.style.transform = `translateX(${x}px) translateY(${y}px)`;
-  dragClone.classList.add("drag-clone");
-};
-
-let timestamp = null;
-let lastMouseX = null;
-let lastMouseY = null;
-
-const translateDragClone = (x, y) => {
-  if (!dragClone) return;
-  requestAnimationFrame(() => {
-    if (!timestamp) {
-      timestamp = Date.now();
-      lastMouseX = x;
-      lastMouseY = y;
-      return;
-    }
-
-    const now = Date.now();
-    const dt = Math.max(now - timestamp, 1);
-    const dx = x - lastMouseX;
-    const dy = y - lastMouseY;
-    const speedX = Math.min(Math.max(dx / dt, -50), 50);
-    const speedY = Math.min(Math.max(dy / dt, -50), 50);
-
-    const skewAmount = 10;
-    let skewDirection = 0;
-    if ((speedX > 0 && speedY < 0) || (speedX < 0 && speedY > 0)) skewDirection = -1;
-    else if ((speedX < 0 && speedY < 0) || (speedX > 0 && speedY > 0)) skewDirection = 1;
-
-    dragClone.style.transform = `translateX(${x}px) translateY(${y}px) 
-    skew(${skewAmount * skewDirection}deg)
-    `;
-
-    timestamp = now;
-    lastMouseX = x;
-    lastMouseY = y;
-  });
-};
-
-containers.forEach(container => {
-  const cards = container.querySelectorAll(".card");
-
-  cards.forEach(card => {
-    card.ondragenter = e => {};
-    card.ondragstart = e => {
-      dragClone = card.cloneNode(true);
-      initDragClone(e.x, e.y);
-      dragArea.appendChild(dragClone);
-      card.classList.add("dragging");
-    };
-    card.ondragend = e => {
-      card.classList.remove("dragging");
-      dragArea.removeChild(dragClone);
-      dnd1.initialize();
-      dnd2.initialize();
-      dnd1.play();
-      dnd2.play();
-    };
-
-    card.ondrag = e => {
-      translateDragClone(e.clientX, e.clientY);
-    };
-  });
-
-  container.ondragenter = e => {
-    const dragging = document.querySelector(".dragging");
-    container.appendChild(dragging);
-    // dnd();
-  };
-
-  container.ondragover = e => {
-    e.preventDefault();
-    return;
-
-    const getOffset = child => {
-      // child.querySelector(".card");
-      const box = child.getBoundingClientRect();
-      // console.log(box);
-      const x = e.clientX - box.right + box.width / 2;
-      const y = e.clientY - box.top - box.height;
-      return { x, y };
-    };
-
-    const children = container.querySelectorAll(":scope > .card:not(.drag-clone, .dragging)");
-    // console.log(children);
-
-    let before = null;
-    let after = null;
-
-    // find closest child before and after dragging position
-    for (const child of children) {
-      const { x, y } = getOffset(child);
-      // console.log(x);
-      const closestBefore = before ? getOffset(before) : { x: Number.NEGATIVE_INFINITY, y: Number.NEGATIVE_INFINITY };
-      const closestAfter = after ? getOffset(after) : { x: Number.POSITIVE_INFINITY, y: Number.POSITIVE_INFINITY };
-
-      // if (y > 0 || y < closestBefore.y) continue;
-      if (x < 0 && x > closestBefore.x) before = child;
-      if (x > 0 && x < closestAfter.x) after = child;
-    }
-
-    const dragging = document.querySelector(".dragging");
-    if (before) before.before(dragging);
-    if (after) after.after(dragging);
-    // dnd();
-  };
-});

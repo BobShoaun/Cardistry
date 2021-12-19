@@ -11,7 +11,6 @@ class Navbar extends HTMLElement {
           <li class="text-sm hover:underline underline-offset-2"><a href="/">Home</a></li>
           <li class="text-sm hover:underline underline-offset-2"><a href="/examples.html">Examples</a></li>
           <li class="text-sm hover:underline underline-offset-2"><a href="/documentation.html">Documentation</a></li>
-          <li class="text-sm hover:underline underline-offset-2"><a href="/presets.html">Presets</a></li>
         </ul>
       </nav>
     `;
