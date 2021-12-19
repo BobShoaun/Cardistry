@@ -1,17 +1,19 @@
 # Cardistry
 
+An expressive and versatile card animation engine, for animating cards or card-like visuals in your website.
+
+It provides an easy and intuitive API for developers to animate a group of cards, and allows them to specify a sequence of animations to play for a group of cards.
+
 ## Documentation
 
 For full documentation, visit [cardistry.herokuapp.com](https://cardistry.herokuapp.com/documentation.html).
 
-### Getting Started
-
-#### Installation
+### Installation
 
 - Run `npm install cardistry`
 - Run `yarn add cardistry`
 
-#### Basic Usage
+### Basic Usage
 
 Setup a simple hello world example to get you up and running.
 Import the library as an ES6 module.
