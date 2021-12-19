@@ -13,7 +13,7 @@ html {
 }
 
 .documentation h1 {
-  @apply text-2xl font-bold mb-4 mt-14 scroll-m-6;
+  @apply text-2xl font-bold mb-1.5 mt-14 scroll-m-6;
 }
 
 .documentation h2 {

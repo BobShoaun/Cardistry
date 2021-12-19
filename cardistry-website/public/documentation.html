@@ -34,14 +34,14 @@
   <body class="max-h-screen">
     <app-navbar></app-navbar>
 
-    <aside class="px-9 py-5 overflow-y-auto fixed left-0 bottom-0 top-14 w-60 border-r-2 border-gray-400">
-      <h3 class="mb-2 font-semibold"><a href="#getting-started">Getting Started</a></h3>
+    <aside class="px-9 py-8 overflow-y-auto fixed left-0 bottom-0 top-14 w-60 border-r-2 border-gray-400 shadow-sm">
+      <h3 class="mb-2 font-semibold hover:underline"><a href="#getting-started">Getting Started</a></h3>
       <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
         <li class="hover:underline"><a href="#getting-started/installation">Installation</a></li>
         <li class="hover:underline"><a href="#getting-started/basic-usage">Basic Usage</a></li>
       </ol>
 
-      <h3 class="mb-2 font-semibold"><a href="#core-concepts">Core Concepts</a></h3>
+      <h3 class="mb-2 font-semibold hover:underline"><a href="#core-concepts">Core Concepts</a></h3>
       <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
         <li class="hover:underline"><a href="#core-concepts/setup-cards">Setup Cards</a></li>
         <li class="hover:underline"><a href="#core-concepts/state-machine">State Machine</a></li>
@@ -49,7 +49,7 @@
         <li class="hover:underline"><a href="#core-concepts/state-presets">State Presets</a></li>
       </ol>
 
-      <h3 class="mb-2 font-semibold"><a href="#state-machine">State Machine</a></h3>
+      <h3 class="mb-2 font-semibold hover:underline"><a href="#state-machine">State Machine</a></h3>
       <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
         <li class="hover:underline"><a href="#state-machine/instance">Instance</a></li>
         <li class="hover:underline"><a href="#state-machine/playback-controls">Playback Controls</a></li>
@@ -57,7 +57,7 @@
         <li class="hover:underline"><a href="#state-machine/timing-function">Timing Function</a></li>
       </ol>
 
-      <h3 class="mb-2 font-semibold"><a href="#api-summary">API Summary</a></h3>
+      <h3 class="mb-2 font-semibold hover:underline"><a href="#api-summary">API Summary</a></h3>
       <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
         <li class="hover:underline"><a href="#api-summary/definitions">Definitions</a></li>
         <li class="hover:underline"><a href="#api-summary/state-machine">State Machine</a></li>
@@ -68,7 +68,7 @@
 
     <main class="fixed left-60 top-14 bottom-0 right-0 overflow-y-auto scroll-smooth">
       <section class="container mx-auto px-10 pb-10 documentation">
-        <h1 id="getting-started" class="">Getting started with Cardistry</h1>
+        <h1 id="getting-started">Getting started with Cardistry</h1>
         <hr class="mb-5" />
         <p>
           Cardistry is an expressive and versatile card animation engine, for animating cards or card-like visuals in
@@ -532,6 +532,7 @@ instance.stop(); // stops the animation</code></pre>
             </tr>
           </tbody>
         </table>
+        <div class="mb-10"></div>
       </section>
 
       <app-footer></app-footer>
