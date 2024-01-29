@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>♠ Cardistry | An elegant & versatile card animation engine</title>
 
-    <!-- only for development, refreshes browser on file change -->
-    <script defer type="text/javascript" src="https://livejs.com/live.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>♠ Cardistry | An elegant & versatile card animation engine</title>
 
-    <script defer src="components/navbar.js"></script>
-    <script defer src="components/footer.js"></script>
+  <!-- only for development, refreshes browser on file change -->
+  <script defer type="text/javascript" src="https://livejs.com/live.js"></script>
 
-    <script defer src="js/script.min.js"></script>
+  <script defer src="components/navbar.js"></script>
+  <script defer src="components/footer.js"></script>
 
-    <link rel="stylesheet" href="css/tailwind.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/card.css" />
+  <script defer src="js/script.min.js"></script>
 
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🃏</text></svg>"
-    />
-  </head>
-  <body>
-    <app-navbar></app-navbar>
+  <link rel="stylesheet" href="css/tailwind.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/card.css" />
 
-    <main class="container mx-auto p-4 mt-14">
-      <div class="text-center pt-20 pb-24">
-        <h2 class="text-3xl font-semibold mb-6">An expressive & versatile card animation engine</h2>
-        <div class="mb-14">
-          <a
-            href="documentation.html"
-            class="
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🃏</text></svg>" />
+</head>
+
+<body>
+  <app-navbar></app-navbar>
+
+  <main class="container mx-auto p-4 mt-14">
+    <div class="text-center pt-20 pb-24">
+      <h2 class="text-3xl font-semibold mb-6">An expressive & versatile card animation engine</h2>
+      <div class="mb-14">
+        <a href="documentation.html" class="
               font-bold
               bg-red-600
               hover:bg-red-500
@@ -43,11 +41,8 @@
               py-2
               shadow-md
               inline-block
-            "
-            >Get Started</a
-          >
-          <button
-            class="
+            ">Get Started</a>
+        <a href="https://github.com/BobShoaun/Cardistry" class="
               ml-4
               bg-neutral-300
               hover:bg-neutral-200
@@ -58,23 +53,24 @@
               rounded-md
               text-neutral-700
               font-bold
-            "
-          >
-            Source
-          </button>
-        </div>
-
-        <p class="text-gray-600 mb-2">Installation:</p>
-        <code class="bg-gray-800 w-96 py-2 block mx-auto text-white text-sm select-all mb-3">npm i cardistry</code>
+              inline-block
+            ">
+          Source
+        </a>
       </div>
 
-      <section id="table" class="bg-table mb-20 shadow-inner overflow-hidden" style="height: 30rem">
-        <div class="example deck main"></div>
-      </section>
+      <p class="text-gray-600 mb-2">Installation:</p>
+      <code class="bg-gray-800 w-96 py-2 block mx-auto text-white text-sm select-all mb-3">npm i cardistry</code>
+    </div>
 
-      <!-- <app-example title="" subtitle="" height="30" type="deck example main"></app-example> -->
-    </main>
+    <section id="table" class="bg-table mb-20 shadow-inner overflow-hidden" style="height: 30rem">
+      <div class="example deck main"></div>
+    </section>
 
-    <app-footer></app-footer>
-  </body>
+    <!-- <app-example title="" subtitle="" height="30" type="deck example main"></app-example> -->
+  </main>
+
+  <app-footer></app-footer>
+</body>
+
 </html>
