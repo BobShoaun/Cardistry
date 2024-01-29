@@ -1,119 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>♠ Cardistry | Documentation</title>
 
-    <!-- only for development, refreshes browser on file change -->
-    <script defer type="text/javascript" src="https://livejs.com/live.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>♠ Cardistry | Documentation</title>
 
-    <script defer src="components/navbar.js"></script>
-    <script defer src="components/footer.js"></script>
+  <!-- only for development, refreshes browser on file change -->
+  <script defer type="text/javascript" src="https://livejs.com/live.js"></script>
 
-    <link rel="stylesheet" href="css/tailwind.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/card.css" />
+  <script defer src="components/navbar.js"></script>
+  <script defer src="components/footer.js"></script>
 
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🃏</text></svg>"
-    />
+  <link rel="stylesheet" href="css/tailwind.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/card.css" />
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github-dark.min.css" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🃏</text></svg>" />
 
-    <script>
-      hljs.highlightAll();
-    </script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github-dark.min.css" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
 
-    <!-- credits to tailwindcss and hightlight.js -->
-  </head>
+  <script>
+    hljs.highlightAll();
+  </script>
 
-  <body class="max-h-screen">
-    <app-navbar></app-navbar>
+  <!-- credits to tailwindcss and hightlight.js -->
+</head>
 
-    <aside class="px-9 py-8 overflow-y-auto fixed left-0 bottom-0 top-14 w-60 border-r-2 border-gray-400 shadow-sm">
-      <h3 class="mb-2 font-semibold hover:underline"><a href="#getting-started">Getting Started</a></h3>
-      <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
-        <li class="hover:underline"><a href="#getting-started/installation">Installation</a></li>
-        <li class="hover:underline"><a href="#getting-started/basic-usage">Basic Usage</a></li>
-      </ol>
+<body class="max-h-screen">
+  <app-navbar></app-navbar>
 
-      <h3 class="mb-2 font-semibold hover:underline"><a href="#core-concepts">Core Concepts</a></h3>
-      <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
-        <li class="hover:underline"><a href="#core-concepts/setup-cards">Setup Cards</a></li>
-        <li class="hover:underline"><a href="#core-concepts/state-machine">State Machine</a></li>
-        <li class="hover:underline"><a href="#core-concepts/functional-properties">Functional Props</a></li>
-        <li class="hover:underline"><a href="#core-concepts/state-presets">State Presets</a></li>
-      </ol>
+  <aside class="px-9 py-8 overflow-y-auto fixed left-0 bottom-0 top-14 w-60 border-r-2 border-gray-400 shadow-sm">
+    <h3 class="mb-2 font-semibold hover:underline"><a href="#getting-started">Getting Started</a></h3>
+    <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
+      <li class="hover:underline"><a href="#getting-started/installation">Installation</a></li>
+      <li class="hover:underline"><a href="#getting-started/basic-usage">Basic Usage</a></li>
+    </ol>
 
-      <h3 class="mb-2 font-semibold hover:underline"><a href="#state-machine">State Machine</a></h3>
-      <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
-        <li class="hover:underline"><a href="#state-machine/instance">Instance</a></li>
-        <li class="hover:underline"><a href="#state-machine/playback-controls">Playback Controls</a></li>
-        <li class="hover:underline"><a href="#state-machine/relative-states">Relative States</a></li>
-        <li class="hover:underline"><a href="#state-machine/timing-function">Timing Function</a></li>
-      </ol>
+    <h3 class="mb-2 font-semibold hover:underline"><a href="#core-concepts">Core Concepts</a></h3>
+    <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
+      <li class="hover:underline"><a href="#core-concepts/setup-cards">Setup Cards</a></li>
+      <li class="hover:underline"><a href="#core-concepts/state-machine">State Machine</a></li>
+      <li class="hover:underline"><a href="#core-concepts/functional-properties">Functional Props</a></li>
+      <li class="hover:underline"><a href="#core-concepts/state-presets">State Presets</a></li>
+    </ol>
 
-      <h3 class="mb-2 font-semibold hover:underline"><a href="#api-summary">API Summary</a></h3>
-      <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
-        <li class="hover:underline"><a href="#api-summary/definitions">Definitions</a></li>
-        <li class="hover:underline"><a href="#api-summary/state-machine">State Machine</a></li>
-        <li class="hover:underline"><a href="#api-summary/states">State</a></li>
-        <li class="hover:underline"><a href="#api-summary/presets">Presets</a></li>
-      </ol>
-    </aside>
+    <h3 class="mb-2 font-semibold hover:underline"><a href="#state-machine">State Machine</a></h3>
+    <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
+      <li class="hover:underline"><a href="#state-machine/instance">Instance</a></li>
+      <li class="hover:underline"><a href="#state-machine/playback-controls">Playback Controls</a></li>
+      <li class="hover:underline"><a href="#state-machine/relative-states">Relative States</a></li>
+      <li class="hover:underline"><a href="#state-machine/timing-function">Timing Function</a></li>
+    </ol>
 
-    <main class="fixed left-60 top-14 bottom-0 right-0 overflow-y-auto scroll-smooth">
-      <section class="container mx-auto px-10 pb-10 documentation">
-        <h1 id="getting-started">Getting started with Cardistry</h1>
-        <hr class="mb-5" />
-        <p>
-          Cardistry is an expressive and versatile card animation engine, for animating cards or card-like visuals in
-          your website.
-        </p>
-        <p>
-          It provides an easy and intuitive API for developers to animate a group of cards, and allows them to specify a
-          sequence of animations to play for a group of cards.
-        </p>
-        <p>
-          Some examples made possible with this library are moving, spreading, fanning, flipping, distributing,
-          shuffling, and twisting a deck of cards.
-          <!-- Moreover, hover and focus animations allow for an individual card to
+    <h3 class="mb-2 font-semibold hover:underline"><a href="#api-summary">API Summary</a></h3>
+    <ol class="mb-5 pl-4 space-y-2 text-sm text-neutral-700">
+      <li class="hover:underline"><a href="#api-summary/definitions">Definitions</a></li>
+      <li class="hover:underline"><a href="#api-summary/state-machine">State Machine</a></li>
+      <li class="hover:underline"><a href="#api-summary/states">State</a></li>
+      <li class="hover:underline"><a href="#api-summary/presets">Presets</a></li>
+    </ol>
+  </aside>
+
+  <main class="fixed left-60 top-14 bottom-0 right-0 overflow-y-auto scroll-smooth">
+    <section class="container mx-auto px-10 pb-10 documentation">
+      <h1 id="getting-started">Getting started with Cardistry</h1>
+      <hr class="mb-5" />
+      <p>
+        Cardistry is an expressive and versatile card animation engine, for animating cards or card-like visuals in
+        your website.
+      </p>
+      <p>
+        It provides an easy and intuitive API for developers to animate a group of cards, and allows them to specify a
+        sequence of animations to play for a group of cards.
+      </p>
+      <p>
+        Some examples made possible with this library are moving, spreading, fanning, flipping, distributing,
+        shuffling, and twisting a deck of cards.
+        <!-- Moreover, hover and focus animations allow for an individual card to
           be animated independently from a deck of cards, and the drag and drop API allows for dragging and dropping
           animations to be easily added. -->
-        </p>
-        <h2 id="getting-started/installation" class="">Installation</h2>
-        <p class="">There are several ways to install this library into your project.</p>
-        <h3 class="">Using NPM:</h3>
-        <code class="select-all"> npm install cardistry </code>
-        <h3 class="">Using Yarn:</h3>
-        <code class="select-all"> yarn add cardistry </code>
-        <h3 class="">Using a CDN (Add this to the head of your HTML document)</h3>
-        <pre><code class="select-all"> &lt;script defer src="unpkg.com/cardistry@1.0.1"&gt;&lt;/script&gt; </code></pre>
+      </p>
+      <h2 id="getting-started/installation" class="">Installation</h2>
+      <p class="">There are several ways to install this library into your project.</p>
+      <h3 class="">Using NPM:</h3>
+      <code class="select-all"> npm install cardistry </code>
+      <h3 class="">Using Yarn:</h3>
+      <code class="select-all"> yarn add cardistry </code>
+      <h3 class="">Using a CDN (Add this to the head of your HTML document)</h3>
+      <pre><code class="select-all"> &lt;script defer src="unpkg.com/cardistry@1.0.1"&gt;&lt;/script&gt; </code></pre>
 
-        <h3 class="">Download Source files</h3>
-        <p>Your can download the source files from the <a class="underline" href="">Github Repository</a></p>
+      <h3 class="">Download Source files</h3>
+      <p>Your can download the source files from the <a class="underline"
+          href="https://github.com/BobShoaun/Cardistry">Github Repository</a></p>
 
-        <!-- <code class="doc-code">
+      <!-- <code class="doc-code">
           &lt;script defer src="https://cdn.jsdelivr.net/npm/cardistry@3.0.0"&gt;&lt;/script&gt;
         </code> -->
 
-        <h2 id="getting-started/basic-usage" class="">Basic Usage</h2>
-        <p class="">Setup a simple hello world example to get you up and running.</p>
-        <h3 class="">Import the library as an ES6 module.</h3>
-        <pre><code class="language-javascript">import Cardistry from 'cardistry';</code></pre>
-        <h3 class="">Setup your HTML with cards to be animated.</h3>
-        <pre><code class="language-html">&lt;section class=&quot;example-cards&quot;&gt;
+      <h2 id="getting-started/basic-usage" class="">Basic Usage</h2>
+      <p class="">Setup a simple hello world example to get you up and running.</p>
+      <h3 class="">Import the library as an ES6 module.</h3>
+      <pre><code class="language-javascript">import Cardistry from 'cardistry';</code></pre>
+      <h3 class="">Setup your HTML with cards to be animated.</h3>
+      <pre><code class="language-html">&lt;section class=&quot;example-cards&quot;&gt;
   &lt;div class=&quot;card&quot;&gt; &lt;div class=&quot;content&quot;&gt; &lt;/div&gt; &lt;/div&gt;
   &lt;div class=&quot;card&quot;&gt; &lt;div class=&quot;content&quot;&gt; &lt;/div&gt; &lt;/div&gt;
   &lt;div class=&quot;card&quot;&gt; &lt;div class=&quot;content&quot;&gt; &lt;/div&gt; &lt;/div&gt;
   &lt;div class=&quot;card&quot;&gt; &lt;div class=&quot;content&quot;&gt; &lt;/div&gt; &lt;/div&gt;
 &lt;/section&gt;</code></pre>
-        <h3 class="">Use the Cardistry state machine to animate the group of cards.</h3>
-        <pre><code class="language-javascript">new Cardistry({
+      <h3 class="">Use the Cardistry state machine to animate the group of cards.</h3>
+      <pre><code class="language-javascript">new Cardistry({
   target: ".example-cards",
   loop: true,
   states: [
@@ -124,42 +124,42 @@
   ]
 });</code></pre>
 
-        <h1 id="core-concepts" class="">Core Concepts</h1>
-        <hr class="mb-5" />
-        <h2 id="core-concepts/setup-cards">Setting up the Cards</h2>
-        <p>
-          To be able to use Cardistry correctly, the card's HTML have to be in a certain structure. Here is an example
-          of a single card element:
-        </p>
-        <pre><code>&lt;div class=&quot;card&quot;&gt; 
+      <h1 id="core-concepts" class="">Core Concepts</h1>
+      <hr class="mb-5" />
+      <h2 id="core-concepts/setup-cards">Setting up the Cards</h2>
+      <p>
+        To be able to use Cardistry correctly, the card's HTML have to be in a certain structure. Here is an example
+        of a single card element:
+      </p>
+      <pre><code>&lt;div class=&quot;card&quot;&gt; 
   &lt;div class=&quot;content&quot;&gt; 
     &lt;div class=&quot;front&quot;&gt; ... &lt;/div&gt; 
     &lt;div class=&quot;back&quot;&gt; ... &lt;/div&gt; 
   &lt;/div&gt; 
 &lt;/div&gt;</code></pre>
-        <p>
-          Each card must be assigned a class "card" and have a direct child with class "content", the "front" and "back"
-          is only needed if you intend to flip the card at some point.
-        </p>
-        <p>
-          Hence, each card element will be direct child of a wrapping parent element, which will be referred to by the
-          state machine.
-        </p>
+      <p>
+        Each card must be assigned a class "card" and have a direct child with class "content", the "front" and "back"
+        is only needed if you intend to flip the card at some point.
+      </p>
+      <p>
+        Hence, each card element will be direct child of a wrapping parent element, which will be referred to by the
+        state machine.
+      </p>
 
-        <h2 id="core-concepts/state-machine">The State Machine</h2>
+      <h2 id="core-concepts/state-machine">The State Machine</h2>
 
-        <p>
-          The state machine class, called <em>Cardistry</em>, takes in a <em>target</em>, which is a query of an element
-          in the DOM, specifically the parent of the list of cards you want to animate. It also takes in an array of
-          <em>states</em>, which are the states the target cards will animate over. Each state has properties which
-          position the cards, like <em>translateX</em>, <em>translateY</em>, <em>rotateZ</em> to name a few, and also
-          animation properties like <em>delay</em>, <em>duration</em> and <em>timing</em>.
-        </p>
-        <p>
-          Here is an example of a simple call to the state machine, it animates the cards to move to the right, then
-          move to the left, and it continues doing so because loop is set to true.
-        </p>
-        <pre><code class="language-javascript">new Cardistry({
+      <p>
+        The state machine class, called <em>Cardistry</em>, takes in a <em>target</em>, which is a query of an element
+        in the DOM, specifically the parent of the list of cards you want to animate. It also takes in an array of
+        <em>states</em>, which are the states the target cards will animate over. Each state has properties which
+        position the cards, like <em>translateX</em>, <em>translateY</em>, <em>rotateZ</em> to name a few, and also
+        animation properties like <em>delay</em>, <em>duration</em> and <em>timing</em>.
+      </p>
+      <p>
+        Here is an example of a simple call to the state machine, it animates the cards to move to the right, then
+        move to the left, and it continues doing so because loop is set to true.
+      </p>
+      <pre><code class="language-javascript">new Cardistry({
   target: ".example-cards",
   loop: true, // whether this state machine loops indefinately
   states: [
@@ -173,23 +173,23 @@
     },
   ]
 });</code></pre>
-        <h2 id="core-concepts/functional-properties">Functional state properties</h2>
-        <p>
-          All state properties can be assigned a value, like <em>100</em>, but some can also be assigned a function,
-          with given parameters <em>(i, n)</em>, where i is the current index of the card being animated, and n being
-          the total number of cards to be animated. With this option to assign functions instead of plain values,
-          staggering animations for individual cards becomes possible, and opens up a wide range of possibilities.
-        </p>
-        <p>
-          Here is an example of a call to the state machine, with some properties as functions for more complex
-          behaviours. This one spreads the cards horizontally to the right, stacks then back together, then spreads them
-          again but this time centered from the origin. Notice the use of the function stack() which is a preset state
-          supplied by the library, all it does is resets all the properties which stacks the deck of cards. The
-          difference between the first and the last state is due to the n parameter (number of cards), which allows us
-          to calculate the negative offset required to center the spreaded out cards. The delay property as a function
-          allows us to stagger the animation of each card, instead of having all of the cards animate in sync.
-        </p>
-        <pre><code class="language-javascript">new Cardistry({
+      <h2 id="core-concepts/functional-properties">Functional state properties</h2>
+      <p>
+        All state properties can be assigned a value, like <em>100</em>, but some can also be assigned a function,
+        with given parameters <em>(i, n)</em>, where <em>i</em> is the current index of the card being animated, and
+        <em>n</em> being the total number of cards to be animated. With this option to assign functions instead of plain
+        values, staggering animations for individual cards becomes possible, and opens up a wide range of possibilities.
+      </p>
+      <p>
+        Here is an example of a call to the state machine, with some properties as functions for more complex
+        behaviours. This one spreads the cards horizontally to the right, stacks then back together, then spreads them
+        again but this time centered from the origin. Notice the use of the function <em>stack()</em> which is a preset
+        state supplied by the library, all it does is resets all the properties which stacks the deck of cards. The
+        difference between the first and the last state is due to the <em>n</em> parameter (number of cards), which
+        allows us to calculate the negative offset required to center the spreaded out cards. The delay property as a
+        function allows us to stagger the animation of each card, instead of having all of the cards animate in sync.
+      </p>
+      <pre><code class="language-javascript">new Cardistry({
   target: ".cards",
   states: [
     {
@@ -206,78 +206,78 @@
   ]
 })</code></pre>
 
-        <h2 id="core-concepts/state-presets">State Presets</h2>
-        <p>
-          To use presets like the one used above called <em>stack()</em>, we have to import them from the presets
-          directory.
-        </p>
+      <h2 id="core-concepts/state-presets">State Presets</h2>
+      <p>
+        To use presets like the one used above called <em>stack()</em>, we have to import them from the presets
+        directory.
+      </p>
 
-        <pre><code>import { stack } from 'cardistry/presets';</code></pre>
-        <p>
-          Presets are essentially pre-built states that are used often. Using the ES6 spread operator, they can be mix
-          and matched with custom states.
-        </p>
-        <pre><code>new Cardistry({
+      <pre><code>import { stack } from 'cardistry/presets';</code></pre>
+      <p>
+        Presets are essentially pre-built states that are used often. Using the ES6 spread operator, they can be mix
+        and matched with custom states.
+      </p>
+      <pre><code>new Cardistry({
   target: ".example",
   states: [
     { ...stack(), delay: 500 },
     { ...spreadCenter(50), duration: 700 },
   ],
 })</code></pre>
-        <p>
-          Depending on the preset, there are different arguments used to create them. Some preset states available are
-          <em>stack</em>, <em>spread</em>, <em>fan</em>, and <em>disperse</em>. Refer to the
-          <a class="underline" href="#api-summary">API Summary</a> for the full list.
-        </p>
+      <p>
+        Depending on the preset, there are different arguments used to create them. Some preset states available are
+        <em>stack</em>, <em>spread</em>, <em>fan</em>, and <em>disperse</em>. Refer to the
+        <a class="underline" href="#api-summary">API Summary</a> for the full list.
+      </p>
 
-        <h1 id="state-machine">The State Machine</h1>
-        <hr class="mb-5" />
+      <h1 id="state-machine">The State Machine</h1>
+      <hr class="mb-5" />
 
-        <h2 id="state-machine/instance">State Machine Instance</h2>
-        <p>
-          When instantiating a Cardistry state machine using the <em>new</em> operator, the instance itself can be
-          stored for later use.
-        </p>
-        <pre><code class="language-javascript">const instance = new Cardistry({
+      <h2 id="state-machine/instance">State Machine Instance</h2>
+      <p>
+        When instantiating a Cardistry state machine using the <em>new</em> operator, the instance itself can be
+        stored for later use.
+      </p>
+      <pre><code class="language-javascript">const instance = new Cardistry({
   target: ".cards",
   states: [ ... ]
 });</code></pre>
 
-        <h2 id="state-machine/playback-controls">Playback Controls</h2>
-        <p>
-          With <em>instance</em>. Functions like <em>play()</em>, <em>pause()</em>, <em>stop()</em>, and
-          <em>speed</em> allows us to control the animation like a video.
-        </p>
-        <pre><code>instance.pause(); // pauses the animation
+      <h2 id="state-machine/playback-controls">Playback Controls</h2>
+      <p>
+        With <em>instance</em>. Functions like <em>play()</em>, <em>pause()</em>, <em>stop()</em>, and
+        <em>speed</em> allows us to control the animation like a video.
+      </p>
+      <pre><code>instance.pause(); // pauses the animation
 instance.speed = 2; // sets the speed to 2x
 instance.play(); // resumes animation
 instance.speed = 0.01; // sets the speed to slo-mo
 instance.stop(); // stops the animation</code></pre>
-        <p>
-          By default, the animation starts playing when the state machine is instantiated, unless <em>autoplay</em> is
-          set to <em>false</em>.
-        </p>
-        <p>
-          The <em>loop</em> property can also be assigned a number to allow the animation to loop a certain amount of
-          times.
-        </p>
-        <pre><code>const instance = new Cardistry({
+      <p>
+        By default, the animation starts playing when the state machine is instantiated, unless <em>autoplay</em> is
+        set to <em>false</em>.
+      </p>
+      <p>
+        The <em>loop</em> property can also be assigned a number to allow the animation to loop a certain amount of
+        times.
+      </p>
+      <pre><code>const instance = new Cardistry({
   target: ".cards",
   loop: 3, // loops animation 3 times before stopping
   autoplay: false, // do not auto play animation, .play() has to be called manually.
   states: [ ... ]
 });</code></pre>
 
-        <h2 id="state-machine/relative-states">Relative States</h2>
-        <p>
-          Another property of the state machine is relative, which defaults to false. This determines whether the next
-          state inherits properties from the previous state, or that each state is independant of each other.
-        </p>
-        <p>
-          Here is an example with relative states. The result is the cards moving to the right, then down to the bottom
-          right, since the previous state is inherited.
-        </p>
-        <pre><code class="language-javascript">new Cardistry({
+      <h2 id="state-machine/relative-states">Relative States</h2>
+      <p>
+        Another property of the state machine is relative, which defaults to false. This determines whether the next
+        state inherits properties from the previous state, or that each state is independant of each other.
+      </p>
+      <p>
+        Here is an example with relative states. The result is the cards moving to the right, then down to the bottom
+        right, since the previous state is inherited.
+      </p>
+      <pre><code class="language-javascript">new Cardistry({
   target: ".cards",
   relative: true,
   states: [
@@ -292,250 +292,251 @@ instance.stop(); // stops the animation</code></pre>
   ]
 })</code></pre>
 
-        <h2 id="state-machine/timing-function">Timing Function</h2>
-        <p>
-          A global timing function (to the state machine) can also be specified, which determines the interpolation
-          behaviour between each state transition.
-        </p>
-        <p>
-          The property takes in a string for predefined timing functions, for eg <em>linear</em>, <em>ease</em>, and
-          <em>elastic</em>. But a function can also be supplied for any custom timing behaviours.
-        </p>
+      <h2 id="state-machine/timing-function">Timing Function</h2>
+      <p>
+        A global timing function (to the state machine) can also be specified, which determines the interpolation
+        behaviour between each state transition.
+      </p>
+      <p>
+        The property takes in a string for predefined timing functions, for eg <em>linear</em>, <em>ease</em>, and
+        <em>elastic</em>. But a function can also be supplied for any custom timing behaviours.
+      </p>
 
-        <pre><code class="language-javascript">new Cardistry({
+      <pre><code class="language-javascript">new Cardistry({
   target: ".cards",
   timing: "linear", // predefined timing function, OR
   timing: t => Math.sqrt(1 - Math.pow(t - 1, 2)), // custom, where t is the normalized time that goes from 0 to 1
   states: [ ... ]
 })</code></pre>
 
-        <h1 id="api-summary">API Summary</h1>
-        <hr class="mb-5" />
-        <h2 id="api-summary/definitions">Type Definitions</h2>
-        <div class="flex gap-2">
-          <p><em>Function&lt;i,n&gt;</em>:</p>
-          <p>
-            function that takes in <em>i</em> and <em>n</em>, where <em>i</em> is the index of the card, and
-            <em>n</em> is the total number of cards within the parent element. Returns a <em>Number</em>.
-          </p>
-        </div>
-        <div class="flex gap-2">
-          <p><em>Function&lt;t&gt;</em>:</p>
-          <p>
-            function that takes in <em>t</em>, where <em>t</em> is the normalized time from 0 to 1. Returns a
-            <em>Number</em>.
-          </p>
-        </div>
-        <div class="flex gap-2">
-          <p><em>Timing</em>:</p>
-          <p>
-            one of <em>"linear"</em>, <em>"ease"</em>, <em>"ease-in"</em>, <em>"ease-out"</em>, <em>"quad"</em>,
-            <em>"elastic"</em>, and <em>"bounce"</em>.
-          </p>
-        </div>
-
-        <h2 id="api-summary/state-machine">State Machine Options</h2>
-        <p>For the arguments passed into the options object when contructing a <em>new Cardistry</em> instance.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Default</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>target</td>
-              <td>The CSS selector for the parent element with all the cards.</td>
-              <td>String</td>
-              <td>""</td>
-            </tr>
-            <tr>
-              <td>initialState</td>
-              <td>The first state to be assigned to the cards before the animation starts playing.</td>
-              <td>Object</td>
-              <td>
-                { moveX: 0, moveY: 0, rotate: 0, scale: 1, originX: 0.5, originY: 0.5, order: () => 1, flipY: 0, flipX:
-                0 }
-              </td>
-            </tr>
-            <tr>
-              <td>states</td>
-              <td>The list of states to be transitioned to in order.</td>
-              <td>Array</td>
-              <td>[]</td>
-            </tr>
-            <tr>
-              <td>relative</td>
-              <td>Whether the previous state values are inherited or not.</td>
-              <td>Boolean</td>
-              <td>false</td>
-            </tr>
-            <tr>
-              <td>loop</td>
-              <td>Determines how many times the animation will loop, or indefinately.</td>
-              <td>Boolean | Number</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>autoplay</td>
-              <td>Whether the animation starts playing immediately or not.</td>
-              <td>Boolean</td>
-              <td>false</td>
-            </tr>
-            <tr>
-              <td>timing</td>
-              <td>The global timing function of the animation.</td>
-              <td>Timing | Function&lt;t&gt;</td>
-              <td>"ease"</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h2 id="api-summary/states">State Options</h2>
+      <h1 id="api-summary">API Summary</h1>
+      <hr class="mb-5" />
+      <h2 id="api-summary/definitions">Type Definitions</h2>
+      <div class="flex gap-2">
+        <p><em>Function&lt;i,n&gt;</em>:</p>
         <p>
-          Properties for each state, for the <em>states</em> array and <em>initialState</em> properties for the state
-          machine.
+          function that takes in <em>i</em> and <em>n</em>, where <em>i</em> is the index of the card, and
+          <em>n</em> is the total number of cards within the parent element. Returns a <em>Number</em>.
         </p>
-        <table>
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Default</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>moveX</td>
-              <td>Manipulates the x position in px units. Functional version takes in (i, n)</td>
-              <td>Number | Function&lt;i,n&gt;</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>moveY</td>
-              <td>Manipulates the y position in px units.</td>
-              <td>Number | Function&lt;i,n&gt;</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>rotate</td>
-              <td>Manipulates the z rotation in degrees.</td>
-              <td>Number | Function&lt;i,n&gt;</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>flipX</td>
-              <td>Manipulates the x rotation in degrees.</td>
-              <td>Number | Function&lt;i,n&gt;</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>flipY</td>
-              <td>Manipulates the y rotation in degrees.</td>
-              <td>Number | Function&lt;i,n&gt;</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>scale</td>
-              <td>Manipulates the scale of the cards in normalized percentage (1 = 100%).</td>
-              <td>Number | Function&lt;i,n&gt;</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>originX</td>
-              <td>Sets x value of the center of rotation in normalized percentage (1 = 100%).</td>
-              <td>Number</td>
-              <td>0.5</td>
-            </tr>
-            <tr>
-              <td>originY</td>
-              <td>Sets y value of the center of rotation in normalized percentage (1 = 100%).</td>
-              <td>Number</td>
-              <td>0.5</td>
-            </tr>
-            <tr>
-              <td>order</td>
-              <td>Sets the rendering order which each card is displayed (z-index).</td>
-              <td>Function&lt;i,n&gt;</td>
-              <td>() => 1</td>
-            </tr>
-            <tr>
-              <td>duration</td>
-              <td>The time taken to transition to the current state in milliseconds.</td>
-              <td>Number | Function&lt;i,n&gt;</td>
-              <td>500</td>
-            </tr>
-            <tr>
-              <td>delay</td>
-              <td>The delay before transitioning to the current state in milliseconds.</td>
-              <td>Number | Function&lt;i,n&gt;</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>timing</td>
-              <td>Timing function of the state.</td>
-              <td>Timing | Function&lt;t&gt;</td>
-              <td>"ease"</td>
-            </tr>
-          </tbody>
-        </table>
+      </div>
+      <div class="flex gap-2">
+        <p><em>Function&lt;t&gt;</em>:</p>
+        <p>
+          function that takes in <em>t</em>, where <em>t</em> is the normalized time from 0 to 1. Returns a
+          <em>Number</em>.
+        </p>
+      </div>
+      <div class="flex gap-2">
+        <p><em>Timing</em>:</p>
+        <p>
+          one of <em>"linear"</em>, <em>"ease"</em>, <em>"ease-in"</em>, <em>"ease-out"</em>, <em>"quad"</em>,
+          <em>"elastic"</em>, and <em>"bounce"</em>.
+        </p>
+      </div>
 
-        <h2 id="api-summary/presets">Presets</h2>
-        <p>Pre-built states to be used within the states array of the state machine.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Preset</th>
-              <th>Description</th>
-              <th>Parameters</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>stack</td>
-              <td>Stacks the cards on top on eachother.</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>spreadRight</td>
-              <td>Spreads the cards towards the right.</td>
-              <td>(amount = 25) the spacing between each card.</td>
-            </tr>
-            <tr>
-              <td>spreadLeft</td>
-              <td>Spreads the cards towards the left.</td>
-              <td>(amount = 25) the spacing between each card.</td>
-            </tr>
-            <tr>
-              <td>spreadCenter</td>
-              <td>Spreads the cards whilst keeping all of them centered.</td>
-              <td>(amount = 25) the spacing between each card.</td>
-            </tr>
-            <tr>
-              <td>flip</td>
-              <td>Flips all the cards onto their backs.</td>
-              <td>-</td>
-            </tr>
-            <tr>
-              <td>fan</td>
-              <td>Fans the cards whilst keeping them centered.</td>
-              <td>(angle = 5) the angle between each card.</td>
-            </tr>
-            <tr>
-              <td>disperse</td>
-              <td>Disperses the cards randomly in all directions.</td>
-              <td>(amount = 200) the maximum distance the card can be dispersed from the center.</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="mb-10"></div>
-      </section>
+      <h2 id="api-summary/state-machine">State Machine Options</h2>
+      <p>For the arguments passed into the options object when contructing a <em>new Cardistry</em> instance.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>target</td>
+            <td>The CSS selector for the parent element with all the cards.</td>
+            <td>String</td>
+            <td>""</td>
+          </tr>
+          <tr>
+            <td>initialState</td>
+            <td>The first state to be assigned to the cards before the animation starts playing.</td>
+            <td>Object</td>
+            <td>
+              { moveX: 0, moveY: 0, rotate: 0, scale: 1, originX: 0.5, originY: 0.5, order: () => 1, flipY: 0, flipX:
+              0 }
+            </td>
+          </tr>
+          <tr>
+            <td>states</td>
+            <td>The list of states to be transitioned to in order.</td>
+            <td>Array</td>
+            <td>[]</td>
+          </tr>
+          <tr>
+            <td>relative</td>
+            <td>Whether the previous state values are inherited or not.</td>
+            <td>Boolean</td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>loop</td>
+            <td>Determines how many times the animation will loop, or indefinately.</td>
+            <td>Boolean | Number</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>autoplay</td>
+            <td>Whether the animation starts playing immediately or not.</td>
+            <td>Boolean</td>
+            <td>false</td>
+          </tr>
+          <tr>
+            <td>timing</td>
+            <td>The global timing function of the animation.</td>
+            <td>Timing | Function&lt;t&gt;</td>
+            <td>"ease"</td>
+          </tr>
+        </tbody>
+      </table>
 
-      <app-footer></app-footer>
-    </main>
-  </body>
+      <h2 id="api-summary/states">State Options</h2>
+      <p>
+        Properties for each state, for the <em>states</em> array and <em>initialState</em> properties for the state
+        machine.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Default</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>moveX</td>
+            <td>Manipulates the x position in px units. Functional version takes in (i, n)</td>
+            <td>Number | Function&lt;i,n&gt;</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>moveY</td>
+            <td>Manipulates the y position in px units.</td>
+            <td>Number | Function&lt;i,n&gt;</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>rotate</td>
+            <td>Manipulates the z rotation in degrees.</td>
+            <td>Number | Function&lt;i,n&gt;</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>flipX</td>
+            <td>Manipulates the x rotation in degrees.</td>
+            <td>Number | Function&lt;i,n&gt;</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>flipY</td>
+            <td>Manipulates the y rotation in degrees.</td>
+            <td>Number | Function&lt;i,n&gt;</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>scale</td>
+            <td>Manipulates the scale of the cards in normalized percentage (1 = 100%).</td>
+            <td>Number | Function&lt;i,n&gt;</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>originX</td>
+            <td>Sets x value of the center of rotation in normalized percentage (1 = 100%).</td>
+            <td>Number</td>
+            <td>0.5</td>
+          </tr>
+          <tr>
+            <td>originY</td>
+            <td>Sets y value of the center of rotation in normalized percentage (1 = 100%).</td>
+            <td>Number</td>
+            <td>0.5</td>
+          </tr>
+          <tr>
+            <td>order</td>
+            <td>Sets the rendering order which each card is displayed (z-index).</td>
+            <td>Function&lt;i,n&gt;</td>
+            <td>() => 1</td>
+          </tr>
+          <tr>
+            <td>duration</td>
+            <td>The time taken to transition to the current state in milliseconds.</td>
+            <td>Number | Function&lt;i,n&gt;</td>
+            <td>500</td>
+          </tr>
+          <tr>
+            <td>delay</td>
+            <td>The delay before transitioning to the current state in milliseconds.</td>
+            <td>Number | Function&lt;i,n&gt;</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>timing</td>
+            <td>Timing function of the state.</td>
+            <td>Timing | Function&lt;t&gt;</td>
+            <td>"ease"</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="api-summary/presets">Presets</h2>
+      <p>Pre-built states to be used within the states array of the state machine.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Preset</th>
+            <th>Description</th>
+            <th>Parameters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>stack</td>
+            <td>Stacks the cards on top on eachother.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>spreadRight</td>
+            <td>Spreads the cards towards the right.</td>
+            <td>(amount = 25) the spacing between each card.</td>
+          </tr>
+          <tr>
+            <td>spreadLeft</td>
+            <td>Spreads the cards towards the left.</td>
+            <td>(amount = 25) the spacing between each card.</td>
+          </tr>
+          <tr>
+            <td>spreadCenter</td>
+            <td>Spreads the cards whilst keeping all of them centered.</td>
+            <td>(amount = 25) the spacing between each card.</td>
+          </tr>
+          <tr>
+            <td>flip</td>
+            <td>Flips all the cards onto their backs.</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>fan</td>
+            <td>Fans the cards whilst keeping them centered.</td>
+            <td>(angle = 5) the angle between each card.</td>
+          </tr>
+          <tr>
+            <td>disperse</td>
+            <td>Disperses the cards randomly in all directions.</td>
+            <td>(amount = 200) the maximum distance the card can be dispersed from the center.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="mb-10"></div>
+    </section>
+
+    <app-footer></app-footer>
+  </main>
+</body>
+
 </html>
