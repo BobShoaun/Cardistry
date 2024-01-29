@@ -2,7 +2,7 @@
   "name": "cardistry",
   "version": "1.0.1",
   "description": "A powerful card animation engine",
-  "homepage": "https://cardistry.herokuapp.com/",
+  "homepage": "https://bobshoaun.github.io/Cardistry/",
   "main": "index.js",
   "type": "module",
   "scripts": {
