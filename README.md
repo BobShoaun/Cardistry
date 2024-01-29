@@ -6,7 +6,7 @@ It provides an easy and intuitive API for developers to animate a group of cards
 
 ## Documentation
 
-For full documentation, visit [cardistry.herokuapp.com/documentation.html](https://cardistry.herokuapp.com/documentation.html).
+For full documentation, visit [bobshoaun.github.io/Cardistry/](https://bobshoaun.github.io/Cardistry/).
 
 ### Installation
 
